@@ -9,3 +9,7 @@ def register(request):
     else:
         form =AttendeeForm()
     return render(request, 'home/register.html', {'form':form})
+
+
+def homepage(request):
+    return render(request, "home/index.html")
