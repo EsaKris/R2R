@@ -38,6 +38,8 @@ nav{
     border: 1px solid goldenrod;
     color: goldenrod;
     border-radius: 10px;
+    display: inline-block;
+    margin-top: 5px;
 }
 
 @media screen and (max-width:960px) {
