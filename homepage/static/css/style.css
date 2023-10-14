@@ -19,6 +19,7 @@ nav{
 .nav-item{
     display: flex;
     min-width: 40%;
+    align-items: center;
     justify-content: space-between;
 }
 #nav-item-list{
@@ -26,10 +27,12 @@ nav{
     display: flex;
     justify-content: space-between;
     list-style: none;
+
 }
 .nav-logo img{
-    width:50px
+    display:none;
 }
+
 @media screen and (max-width:960px) {
     body{
         margin: 0 1rem;
@@ -59,10 +62,25 @@ nav{
         text-align: left;
 
     }
+
+    .nav-logo img.phone{
+        width:50px;
+        display:block;
+
+    }
 }
 @media screen and (min-width:960px) {
     .nav-icons{
         display: none;
     }
-    #nav-item
+    #nav-item-list i{
+        display: none;
+    }
+   .nav-item{
+    min-width: 60%;
+   }
+   .nav-logo img.laptop{
+    width:200px;
+    display: block;
+}
 }
