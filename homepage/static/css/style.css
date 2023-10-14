@@ -40,7 +40,7 @@ nav{
         color:white;
         height:100%;
         text-align:center;
-        display:flex;
+        display:none;
         flex-direction: column;
         justify-content: center;
     }
@@ -49,9 +49,20 @@ nav{
         align-items: center;
         flex-direction: column;
     }
+    
+    #nav-item-list li div i{
+        padding-right: 5px;
+    }
+    #nav-item-list li{
+        padding: 5px;
+        border-bottom: 1px white solid;
+        text-align: left;
+
+    }
 }
 @media screen and (min-width:960px) {
     .nav-icons{
         display: none;
     }
+    #nav-item
 }
