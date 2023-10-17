@@ -8,13 +8,14 @@ a{
     text-decoration:none;
     color:inherit;
 }
-header{
-    padding: 2rem;
+header, .Header-Text{
+    padding: 2rem 1rem;
 }
-nav{
+nav > div{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    
 }
 .nav-item{
     display: flex;
@@ -43,6 +44,17 @@ nav{
     justify-content: space-between;
     list-style: none;
 
+}
+header{
+    background: url(../img/bg/4.jpg);
+    background-position: right;
+    background-size: cover;
+    min-height: 60vh;
+
+}
+header > div{
+    background-color: rgba(0, 0, 0, 0.884);
+    color: white;
 }
 @media screen and (max-width:960px) {
    
@@ -86,9 +98,7 @@ nav{
     }
 }
 @media screen and (min-width:960px) {
-    header{
-        padding:2rem 3.5rem;
-    }
+   
     .nav-icons{
         display: none;
     }
@@ -106,7 +116,6 @@ nav{
 }
 /* HEADER */
 .Header-Text{
-    margin-top: 2.5rem;
     max-width: 700px;
 
 }

@@ -16,8 +16,8 @@
 </head>
 
 <body>
-    <header>
-        <nav>
+        <nav class="p-4">
+            <div class="container">
             <div class="nav-logo">
                 <img class="laptop" src="{% static 'img/logo desktop.png' %}" alt="">
                 <img class="phone" src="{% static 'img/logo.png' %}" alt="">
@@ -53,13 +53,13 @@
                     </li>
                 </ul>
             </div>
+        </div>
         </nav>
-    </header>
       
-        <div>
+        <main >
             {% block main %}
             {% endblock main %}
-        </div>
+        </main>
     <script src="{% static 'js/scripts.js' %}"></script>
 </body>
 

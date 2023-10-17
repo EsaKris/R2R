@@ -8,11 +8,16 @@
         display: none;
     }
 </style>
-    <div class="container mt-5 d-flex">
-        <div class="text-center" style="align-self: center;">
-            <h2>Register for R2R 2023</h2>
+    <div class="container d-flex" style="flex-wrap: wrap;">
+        <div class="text-center" style="align-self: center;flex:1">
+            <div class="text-muted">
+            <h2>R2R 2023</h2>
+            <p> Reconnect to Rest</p>
+            </div>
         </div>
-        <form method="post" id='myForm' style="flex: 1;">
+        <form method="post" id='myForm'>
+            <center><h3 class="text-center p-3">Register</h3></center>
+            <hr>
             {% csrf_token %}
             <div class="field">
                 {{form|crispy}}
