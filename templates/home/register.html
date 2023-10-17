@@ -1,17 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>R2R Registration form 2023</title>
-</head>
-<body>
-    <form method="post">
-        {% csrf_token %}
-        {{form.as_p}}
-        <div>
-            <input type="submit" value="Register">
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block main %}
+<link rel="stylesheet" href="{% static 'css/form.css' %}">
+<style>
+    .registerbtn{
+        display: none;
+    }
+</style>
+    <div class="container mt-5 d-flex">
+        <div class="text-center" style="align-self: center;">
+            <h2>Register for R2R 2023</h2>
         </div>
-    </form>
-</body>
-</html>
+        <form method="post" id='myForm' style="flex: 1;">
+            {% csrf_token %}
+            <div class="field">
+                {{form|crispy}}
+            </div>
+            <br>
+            <div style="text-align: -webkit-center;">
+                <input type="submit" value="Register" style="background-color: goldenrod;color: white;width: 300px;">
+            </div>
+        </form>
+    </div>
+
+
+    <script>
+    function addClassesToFormFields() {
+        var form = document.getElementById("myForm");
+        var fields = form.querySelectorAll("input, select, textarea");  // Select all input, select, and textarea elements within the form
+
+        for (var i = 0; i < fields.length; i++) {
+            fields[i].classList.add("form-control");
+            fields[i].classList.add("form-control-lg");
+        }
+    }
+    addClassesToFormFields()
+</script>
+{% endblock main %}
