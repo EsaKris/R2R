@@ -1,27 +1,29 @@
-{% extends 'base.html' %}
-{% load static %}
-{% load crispy_forms_tags %}
+{% extends 'base.html' %} {% load static %} {% load crispy_forms_tags %} 
 {% block main %}
 <header>
-<div class='container'>
-  <div class="Header-Text" >
-            <div>
-                <h3>
-                    R2R 2023
-                </h3>
-                <h1>
-                    RECONNECT TO REST
-                </h1>
-            </div>
-            <div>
-                <p>
-                    R2R is a non-denominational 3-day conference hosted annually by Again and Afresh Church, Makurdi. It is a time dedicated to the worship of Christ by faithfully teaching His doctrine and having fellowship with His Spirit.
-                </p>
-               <div class="registerbtn">
-                <a class="btn" href="{% url 'register' %}">Register</a>
-               </div>
-            </div>
+  <div>
+    <div class="container">
+      <div class="Header-Text">
+        <div>
+          <h3>R2R 2023</h3>
+          <h1>RECONNECT TO REST</h1>
         </div>
+        <div>
+          <p>
+            R2R is a non-denominational 3-day conference hosted annually by
+            Again and Afresh Church, Makurdi. It is a time dedicated to the
+            worship of Christ by faithfully teaching His doctrine and having
+            fellowship with His Spirit.
+          </p>
+          <div class="registerbtn">
+            <a class="btn" href="{% url 'register' %}">Register</a>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </header>
-    {% endblock main %}
+<script>
+document.getElementById("navHome").classList.add("active")
+</script>
+{% endblock main %}

@@ -16,7 +16,7 @@
 </head>
 
 <body>
-        <nav class="p-4">
+        <nav class="p-2">
             <div class="container">
             <div class="nav-logo">
                 <img class="laptop" src="{% static 'img/logo desktop.png' %}" alt="">
@@ -27,25 +27,25 @@
                     <a href="#" id="nav-icons"><i class="fa fa-bars"></i></a>
                 </div>
                 <ul id="nav-item-list">
-                    <li>
+                    <li id="navHome">
                         <div>
                             <i class="fa fa-home"></i>
                             <a href="/">Home</a>
                         </div>
                     </li>
-                    <li>
+                    <li id="navRegister">
                         <div>
                             <i class="fa fa-registered"></i>
                             <a href="{% url 'register' %}">Register</a>
                         </div>
                     </li>
-                    <li>
+                    <li id="navContact">
                         <div>
                             <i class="fa fa-contact-book"></i>
                             <a href="#">Contact</a>
                         </div>
                     </li>
-                    <li>
+                    <li id="navNow">
                         <div>
                             <i class="fa fa-donate"></i>
                             <a href="#">Donate Now</a>

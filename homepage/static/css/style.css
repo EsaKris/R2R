@@ -8,7 +8,10 @@ a{
     text-decoration:none;
     color:inherit;
 }
-header, .Header-Text{
+.active{
+    border-bottom: 2px goldenrod solid;
+}
+.Header-Text{
     padding: 2rem 1rem;
 }
 nav > div{
@@ -16,6 +19,10 @@ nav > div{
     justify-content: space-between;
     align-items: center;
     
+}
+nav li > div{
+    padding: 2px;
+    font-weight: bold;
 }
 .nav-item{
     display: flex;
@@ -38,11 +45,16 @@ nav > div{
 .Header-Text h1{
     color: goldenrod;
 }
+.Header-Text{
+    display: block;
+    align-self: center;
+}
  #nav-item-list{
     width: 100%;
     display: flex;
     justify-content: space-between;
     list-style: none;
+    margin-bottom: 0;
 
 }
 header{
@@ -50,11 +62,14 @@ header{
     background-position: right;
     background-size: cover;
     min-height: 60vh;
-
+    display: flex;
 }
 header > div{
     background-color: rgba(0, 0, 0, 0.884);
     color: white;
+    width: 100%;
+    align-items: center;
+    display: flex;
 }
 @media screen and (max-width:960px) {
    
@@ -109,7 +124,7 @@ header > div{
     min-width: 40%;
    }
    .nav-logo img.laptop{
-    width:200px;
+    width:250px;
     display: block;
 
 }
