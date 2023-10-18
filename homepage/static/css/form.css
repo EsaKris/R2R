@@ -14,10 +14,11 @@ input[type=checkbox]{
 #myForm{
     background-color: rgba(218, 165, 32, 0.645);
     padding: 1rem;
-    max-width: 700px;
+    max-width: 500px;
     color:white;
     height:100%;
     width:100%;
+    overflow: scroll;
 }
 .form-header{
     color:white;
