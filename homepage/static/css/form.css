@@ -1,6 +1,6 @@
 input, select{
-    min-width: 300px ;
-    height:30px
+    min-width: 200px !important;
+    height:40px
 }
 input[type=checkbox]{
     min-width: 50px !important; 
@@ -26,13 +26,17 @@ input[type=checkbox]{
 .form-header h2{
     color: goldenrod;
 }
-h2{
+h4{
     font-weight: 900;
     font-family: "Sora";
     margin-top: 10px;
     margin-bottom: 10px;
 }
 @media screen and (min-width:960px) {
+    main{
+        display: flex;
+        align-items: center;
+    }
     #myForm{
         border-top-right-radius: 20px;
         border-bottom-right-radius: 20px;
