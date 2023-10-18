@@ -11,16 +11,31 @@ input[type=checkbox]{
     margin: 10px;
 }
 #myForm{
-    background-color: rgba(218, 165, 32, 0.445);
+    background-color: rgba(218, 165, 32, 0.645);
     border-radius: 10px;
     padding: 1rem;
     max-width: 700px;
+    color:white;
+}
+.form-header{
+    color:white
+}
+.form-header h2{
+    color: goldenrod;
+}
+h2{
+    font-weight: 900;
+    font-family: "Sora";
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 @media screen and (min-width:960px) {
-    
-#myForm{
-    margin: 1rem;
-}
+    .register{
+        background: url(../img/bg/4.jpg);
+    background-position: right;
+    background-size: cover;
+    }
+
     form .field{
         display: flex;
         flex-wrap: wrap;

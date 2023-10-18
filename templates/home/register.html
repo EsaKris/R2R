@@ -8,26 +8,30 @@
         display: none;
     }
 </style>
-    <div class="container d-flex" style="flex-wrap: wrap;">
-        <div class="text-center" style="align-self: center;flex:1">
-            <div class="text-muted">
-            <h2>R2R 2023</h2>
-            <p> Reconnect to Rest</p>
+<div class="container rounded-5">
+    <div class="register" >
+        <div class="d-flex" style="flex-wrap: wrap; background-color: rgba(0, 0, 0, 0.784);place-content: center;">
+            <div class="text-center" style="align-self: center;flex:1">
+                <div class="form-header">
+                    <h2>R2R 2023</h2>
+                    <p> Reconnect to Rest</p>
+                </div>
             </div>
+            <form method="post" id='myForm'>
+                <center><h2 class="text-center p-3">Register</h2></center>
+                <hr>
+                {% csrf_token %}
+                <div class="field">
+                    {{form|crispy}}
+                </div>
+                <br>
+                <div style="text-align: -webkit-center;">
+                    <input type="submit" value="Register" style="background-color: white;color: goldenrod;width: 300px;">
+                </div>
+            </form>
         </div>
-        <form method="post" id='myForm'>
-            <center><h3 class="text-center p-3">Register</h3></center>
-            <hr>
-            {% csrf_token %}
-            <div class="field">
-                {{form|crispy}}
-            </div>
-            <br>
-            <div style="text-align: -webkit-center;">
-                <input type="submit" value="Register" style="background-color: goldenrod;color: white;width: 300px;">
-            </div>
-        </form>
-    </div>
+</div>
+</div>
 
 
     <script>
