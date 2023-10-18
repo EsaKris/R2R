@@ -22,7 +22,7 @@
                 <hr>
                 {% csrf_token %}
                 <div class="field" id="fieldContainer">
-                  
+                     {{form|crispy}}
                 </div>
                 <br>
                 <div style="text-align: -webkit-center;">
@@ -36,7 +36,6 @@
 
 
 <div id="fieldsItem" style="visibility: hidden;display: none;">
-    {{form|crispy}}
 </div>
     <script>
     function addClassesToFormFields() {
@@ -49,28 +48,7 @@
         }
     }
     addClassesToFormFields()
-    fields = document.querySelectorAll('#fieldsItem > div')
-    const fieldContainer = document.getElementById("fieldContainer");
-    const nextButton = document.getElementById("nextButton");
-    let currentIndex = 0;
-    
-    function displayFields() {
-        fieldContainer.innerHTML = "";
-        for (let i = currentIndex; i < currentIndex + 4 && i < fields.length; i++) {
-            const field = document.createElement("div");
-            field.textContent = fields[i];
-            fieldContainer.appendChild(fields[i]);
-        }
-    }
-    function handleNextClick() {
-        currentIndex += 4;
-        if (currentIndex >= fields.length) {
-            currentIndex = 0;
-        }
-        displayFields();
-    }
-    nextButton.addEventListener("click", handleNextClick);
-    
+   
     document.getElementById("navRegister").classList.add("active")
 </script>
 {% endblock main %}

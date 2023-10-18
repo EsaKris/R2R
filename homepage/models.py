@@ -14,7 +14,7 @@ class Attendees(models.Model):
     Local_Assembly = models.CharField(max_length=250)
     
     Nationality = models.CharField(max_length=100)
-    State_of_Origin = models.CharField(max_length=100)
+    State_of_Residence = models.CharField(max_length=100)
     Local_Government_Area = models.CharField(max_length=200)
 
     Are_you_a_pastor = models.BooleanField(default=False)
