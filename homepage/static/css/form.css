@@ -18,7 +18,6 @@ input[type=checkbox]{
     color:white;
     height:100%;
     width:100%;
-    overflow: scroll;
 }
 .form-header{
     color:white;
@@ -55,8 +54,13 @@ h4{
         border-radius:20px;
     }
     form .field{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-    }
+        padding: 2rem;
+            }
+}
+#div_id_Are_you_a_pastor,#div_id_will_you_be_camping{
+    float: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left:0;
 }
