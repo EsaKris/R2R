@@ -10,11 +10,11 @@
 </style>
 <div class="container rounded-5">
     <div class="register" >
-        <div class="d-flex" style="flex-wrap: wrap; background-color: rgba(0, 0, 0, 0.784);place-content: center;">
-            <div class="text-center" style="align-self: center;flex:1">
+        <div class="d-flex" style="flex-wrap: wrap; background-color: rgba(0, 0, 0, 0.784);place-content: space-between;height:100%">
+            <div class="text-center" style="align-self: center;flex:1;">
                 <div class="form-header">
                     <h2>R2R 2023</h2>
-                    <p> Reconnect to Rest</p>
+                    <p> Have your mind renewed and heart filled with the knowledge of the will of God, and find grace to obey.</p>
                 </div>
             </div>
             <form method="post" id='myForm'>
@@ -22,7 +22,7 @@
                 <hr>
                 {% csrf_token %}
                 <div class="field">
-                    {{form|crispy}}
+                    
                 </div>
                 <br>
                 <div style="text-align: -webkit-center;">

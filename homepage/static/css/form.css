@@ -1,5 +1,6 @@
 input, select{
     min-width: 300px ;
+    height:30px
 }
 input[type=checkbox]{
     min-width: 50px !important; 
@@ -12,13 +13,15 @@ input[type=checkbox]{
 }
 #myForm{
     background-color: rgba(218, 165, 32, 0.645);
-    border-radius: 10px;
     padding: 1rem;
-    max-width: 700px;
+    max-width: 500px;
     color:white;
+    height:100%;
+    width:100%;
 }
 .form-header{
-    color:white
+    color:white;
+    padding:1rem;
 }
 .form-header h2{
     color: goldenrod;
@@ -30,12 +33,22 @@ h2{
     margin-bottom: 10px;
 }
 @media screen and (min-width:960px) {
+    #myForm{
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+    }
     .register{
+        border-radius:20px;
         background: url(../img/bg/4.jpg);
     background-position: right;
     background-size: cover;
+    height:70vh;
+    justify-content: space-between;
     }
-
+   
+    .register > div{
+        border-radius:20px;
+    }
     form .field{
         display: flex;
         flex-wrap: wrap;
