@@ -9,7 +9,7 @@ a{
     color:inherit;
 }
 .active{
-    border-bottom: 2px goldenrod solid;
+    border-bottom: 2px #9f6110 solid;
 }
 .Header-Text{
     padding: 2rem 1rem;
@@ -39,14 +39,14 @@ nav li > div{
 }
 .btn{
     padding: 10px;
-    border: 1px solid goldenrod;
-    color: goldenrod;
+    border: 1px solid #9f6110;
+    color: #9f6110;
     border-radius: 5px;
     display: inline-block;
     margin-top: 5px;
 }
 .Header-Text h1{
-    color: goldenrod;
+    color: #9f6110;
 }
 .Header-Text{
     display: block;
@@ -75,6 +75,59 @@ header > div{
     align-items: center;
     display: flex;
 }
+
+/* HEADER */
+.Header-Text{
+    max-width: 700px;
+
+}
+.Header{
+    display:flex;
+}
+.Header-Text h1{
+    font-weight: 900;
+    font-family:"Sora";
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.Header-Image{
+    align-self: center;
+    width: 100%;
+    text-align: center;
+}
+.CountDown{
+    
+    min-height:30vh;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    flex-wrap: wrap;
+    color:white;
+    align-items:center
+}
+
+.CountContainer{
+    background:black;
+    display:flex
+}
+.CountDown h1{
+    font-weight: 900;
+    font-family: "Sora";
+        font-size:3rem;
+        color:white;
+}
+.CountDown div > div:first-child{
+    border-left: 0;
+    padding-left:0px;
+}
+.CountDown div > div{
+    border-left: 1px solid white;
+    padding:0 10px;
+    text-align:center;
+}
+
+
+
 @media screen and (max-width:960px) {
     
     .section1{
@@ -124,6 +177,12 @@ header > div{
     header{
         min-height:80vh;
     }
+    .CountDown h1{
+        font-size:1rem;
+    }
+    .CountDown.container{
+        align-content: space-between;
+       }
 }
 @media screen and (min-width:960px) {
    
@@ -134,7 +193,7 @@ header > div{
         display: none;
     }
    .nav-item{
-    min-width: 40%;
+ 1   min-width: 40%;
    }
    .nav-logo img.laptop{
     width:250px;
@@ -145,23 +204,10 @@ header > div{
         font-size:3rem
     }
    
-}
-/* HEADER */
-.Header-Text{
-    max-width: 700px;
-
-}
-.Header{
-    display:flex;
-}
-.Header-Text h1{
-    font-weight: 900;
-    font-family:"Sora";
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-.Header-Image{
-    align-self: center;
-    width: 100%;
-    text-align: center;
+    .section1{
+        min-height:60vh;
+    }    
+    .CountDown h1{
+        font-size:4rem;
+    }
 }

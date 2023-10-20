@@ -36,11 +36,66 @@
             Saints from all walks of life come together at R2R for soul-nourishing sessions of worship, prayers, and fellowship fueled by sincere love. Opportunity will be given for you to ask and receive answers to questions on matters of doctrine. Ministers will also be present who will, with gladness, communicate God's counsel on issues peculiar to the needs of your soul.
         </p>
         <div>
-            <a href="{% url 'register' %}" class="btn" style="background:goldenrod;color: white;">Register Now</a>
+            <a href="{% url 'register' %}" class="btn" style="background:#9f6110;color: white;">Register Now</a>
             <a href="#" class="btn">Locate Us</a>
         </div>
     </div>
 </section>
+<section class="CountContainer ">
+  <div class="CountDown container" style="padding:2rem;">
+    <div>
+      <h3>R2R is</h3>
+      <h1>Comming Soon</h1>
+      <p></p>
+    </div id="time">
+    <div><div class="d-flex" id="countdown">
+   
+    </div></div>
+  </div>
+</section>
+<section>
+  <div>
+    <div class="day-1">
+      
+    </div>
+    <div class="day-2"></div>
+    <div class="day-3"></div>
+  </div>
+</section>
+<script>
+  // Set the target date for the countdown
+  const targetDate = new Date("2023-12-31T00:00:00").getTime();
+
+  function updateCountdown() {
+      const currentDate = new Date().getTime();
+      const timeRemaining = targetDate - currentDate;
+
+      if (timeRemaining <= 0) {
+          document.getElementById("countdown").innerHTML = "Countdown expired!";
+          return;
+      }
+
+      const seconds = Math.floor((timeRemaining / 1000) % 60);
+      const minutes = Math.floor((timeRemaining / 1000 / 60) % 60);
+      const hours = Math.floor((timeRemaining / (1000 * 60 * 60)) % 24);
+      const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+      const months = Math.floor(days / 30); // Assuming 30 days per month
+
+      document.getElementById("countdown").innerHTML = `
+      <div><h1>${months}</h1>Months</div>
+      <div><h1>${days % 30}</h1>Days</div>
+      <div><h1>${hours}</h1>Hours</div>
+      <div><h1>${minutes}</h1>minutes</div>
+      <div><h1>${seconds}</h1>Seconds</div>
+      `;
+  }
+
+  // Update the countdown every second
+  setInterval(updateCountdown, 1000);
+
+  // Initial call to set the correct time
+  updateCountdown();
+</script>
 <script>
 document.getElementById("navHome").classList.add("active")
 </script>
