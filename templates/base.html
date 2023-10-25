@@ -4,8 +4,35 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name='keywords' content='RECONNECT TO REST, R2R'>
+    <meta name='description' content='R2R is a non-denominational 3-day conference hosted annually by Again and Afresh Church, Makurdi. It is a time dedicated to the worship of Christ by faithfully teaching His doctrine and having fellowship with His Spirit.'>
+    <meta name='subject' content='R2R 2023 | RECONNECT TO REST - Again and Afresh Church'>
+    <meta name='copyright' content='Again and Afresh Church'>
+    <meta name='language' content='En'>
+    <meta name='topic' content='RECONNECT TO REST'>
+    <meta name='summary' content="Saints from all walks of life come together at R2R 2023 for soul-nourishing sessions of worship, prayers, and fellowship fueled by sincere love. Opportunity will be given for you to ask and receive answers to questions on matters of doctrine. Ministers will also be present who will, with gladness, communicate God's counsel on issues peculiar to the needs of your soul.">
+    <meta name='Classification' content='Gathering of Believers'>
+    <meta name='author' content='john okojere, johnokojere08@gmail.com'>
+    <meta name='url' content='https://www.againandafresh.org'>
+    <meta name='identifier-URL' content='https://www.againandafresh.org'>
+    <meta name='category' content='conference'>
+    <meta name=' coverage' content='Worldwide'>
+    <meta name='distribution' content='Global'>
+    <meta name='rating' content='General'>
+    <meta name='revisit-after' content='3 days'>
+    <meta name='subtitle' content='RECONNECT TO REST'>
+
+    <meta name='og:title' content='R2R 2023 | Again and Afresh Church - Gathering of Believers'>
+    <meta name='og:type' content='R2R 2023 | RECONNECT TO REST'>
+    <meta name='og:url' content='https://www.againandafresh.org'>
+    <meta name='og:image' content='/static/img/bg/4.png'>
+    <meta name='og:site_name' content='againandafresh'>
+    <meta name='og:description' content='R2R is a non-denominational 3-day conference hosted annually by Again and Afresh Church, Makurdi. It is a time dedicated to the worship of Christ by faithfully teaching His doctrine and having fellowship with His Spirit.'>
     <title>Again ans Afresh The Gathering of Believers</title>
+    <link rel="shortcut icon" type="image/jpg" href="/static/img/logo.png" />
+    
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" integrity="sha512-b2QcS5SsA8tZodcDtGRELiGv5SaKSk1vDHDaQRda0htPYWZ6046lr3kJ5bAAQdpV2mmA/4v0wQF9MyU6/pDIAg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link href='https://fonts.googleapis.com/css?family=Sora' rel='stylesheet'>
@@ -44,7 +71,7 @@
                     </li>
                     <li id="navAbout">
                         <div>
-                            <i class="fa fa-pen"></i>
+                            <i class="fa fa-blog"></i>
                             <a href="/#about" onclick="about()">About Us</a>
                         </div>
                     </li>
@@ -65,14 +92,14 @@
                         {% if user.is_staff %}
                             <li id="navList">
                                 <div>
-                                    <i class="fa fa-list"></i>
+                                    <i class="fa fa-dashboard"></i>
                                     <a href="/admin" onclick="list()">Admin</a>
                                 </div>
                             </li>
                         {% endif %}
                         <li id="navList">
                             <div>
-                                <i class="fa fa-logout"></i>
+                                <i class="fa fa-sign-out"></i>
                                 <a href="{% url 'logout' %}">Logout</a>
                             </div>
                         </li>
