@@ -27,6 +27,9 @@ urlpatterns = [
     path('login/', LoginView.as_view(template_name="auth/login.html"), name="login" )
 
 ]
+admin.site.site_title = "Reconnect to Rest site admin (R2R)"
+admin.site.site_header = "R2R administration Dashboard"
+admin.site.index_title = "R2R administration"
 
 urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
