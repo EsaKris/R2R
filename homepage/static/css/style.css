@@ -182,7 +182,7 @@ header > div{
         flex-direction: column;
     }
     .nav-icons i{
-        font-size:1.5rem
+        font-size:1rem
     }
     #nav-item-list li div i{
         padding-right: 5px;
