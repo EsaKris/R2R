@@ -16,7 +16,7 @@
             fellowship with His Spirit.
           </p>
           <div class="registerbtn">
-            <a class="btn" href="{% url 'register' %}">Register</a>
+            <a class="btn" style="background: #9f6110;padding:0.5rem 2rem;color:white" href="{% url 'register' %}">Register</a>
           </div>
         </div>
       </div>
@@ -30,14 +30,14 @@
     <div style="box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.075); border-radius: 15px;align-self: center;">
         <img src="{% static 'img/r2r 2.png' %}" style="width:100%;" alt="">
     </div>
-    <div class="px-md-5" style="align-self: center; padding: 2rem 0 ;">
+    <div class="" style="align-self: center; padding: 2rem 0 ;">
         <p>
             <h2 style="margin-bottom: 20px;"><span class="active" style="padding-bottom: 5px;font-weight: bold;">R2R</span> is a 3-Day Conference</h2>
             Saints from all walks of life come together at R2R for soul-nourishing sessions of worship, prayers, and fellowship fueled by sincere love. Opportunity will be given for you to ask and receive answers to questions on matters of doctrine. Ministers will also be present who will, with gladness, communicate God's counsel on issues peculiar to the needs of your soul.
         </p>
         <div>
             <a href="{% url 'register' %}" class="btn" style="background:#9f6110;color: white;">Register Now</a>
-            <a href="#" class="btn">Locate Us</a>
+            <a href="#contact" class="btn">Locate Us</a>
         </div>
     </div>
 </section>
@@ -58,7 +58,7 @@
     <div>
       <img src="{% static 'img/bg/2.jpg' %}" alt="Pastor church ogbu head steward Again and Afresh" class="img-fluid">
     </div>
-    <div style="align-self: center;">
+    <div style="align-self: center;" class="message">
       <h2>CONVENER'S MESSAGE</h2>
       <p> I extend a warm and heartfelt invitation to you. Join us for a soul-enriching experience, where we'll spend precious time hearing God's word, seeking His wisdom, and experiencing His boundless grace. Your presence will make this gathering even more special, as we come together in faith and fellowship to draw closer to the divine. Don't miss this opportunity to immerse yourself in the transformative power of His message. See you at R2R 2023!</p>
       <div class="mt-2 fst-italic"><h6>~ Pastor Church Ogbu</h6>
@@ -66,6 +66,8 @@
     </div>
   </div>
 </section>
+<a name="about" id="about"></a>
+
 <section class=" days">
  <div class="container text-white">
   <center style="margin:1rem;">
@@ -73,7 +75,7 @@
     <p>R2R 2023 offers all resources needed for you to have a memorable and well-rounded experience of God.</p>
   </center>
   <br>
-  <div class=" d-md-flex dayslist">
+  <div class=" d-md-flex dayslist" style="text-align: -webkit-center;">
     <div class="day-1">
       <h2>Day 1</h2>
       <hr>
@@ -93,6 +95,7 @@
   </div>
  </div>
 </section>
+<a name="contact" id="contact"></a>
 <section class="  location">
   <div class="container d-md-flex">
     <div style="flex: 1;">
@@ -103,45 +106,46 @@
       <p>So, I invite you to join us at R2R 2023 and experience a memorable and well-rounded encounter with God. This event is an opportunity to open your heart to the refreshing truth and embrace a journey of fulfillment and transformation.</p>
       <div>
         <a href="{% url 'register' %}" class="btn" style="background:#9f6110;color: #fff;">Register Now</a>
-        <a href="#" class="btn">Locate Us</a>
     </div>
     </div>
   </div>
 </section class="contact">
 <section>
-  <div class="container d-md-flex justify-content-between"> 
-    <div class="w-50">
-      <div class="d-flex w-100 m-4 justify-content-center" style="align-items: center;">
-        <div><i class="fa fa-envelope"></i></div>
+  <div class="container d-md-flex justify-content-between">
+    <div class="container" style="padding: 0;">
+      <div>
+        <form action="{% url 'prayerRequest' %}" method="post" class="form-control bg-dark">
+      <h3 style="font-weight: 900; color:white;padding: 1rem;">Do You Have a Prayer Request?</h3>
+          {% csrf_token %}
+      <div class="m-2">
+            <input type="text" class="form-control" name="Full_Name" placeholder="Enter Full Name">
+          </div>
+          <div class="m-2">
+            <textarea class="form-control" name="Request" placeholder="Enter Your Request"></textarea>
+          </div>
+          <div class="m-2">
+            <input type="submit" style="background: #9f6110;padding:0.5rem 2rem;color:white"  value="Send Request" class="btn">
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class=" contacticons p-3" style="align-self: center;">
+      <div class="d-flex w-100 justify-content-start" style="align-items: center;">
+        <div class="align-self-center"><i class="fa fa-envelope"></i></div>
         <div>
           <div><a href="mailto:againandafresh@gmail.com">againandafresh@gmail.com</a></div>
           <div><a href="mailto:info@againandafresh.org">info@againandafresh.org</a></div>
         </div>
       </div>
-      <div class="d-flex w-100 m-4 justify-content-center" style="align-items: center;">
-        <div><i class="fa fa-phone"></i></div>
+      <div class="d-flex w-100 justify-content-start" style="align-items: center;">
+        <div class="align-self-center"><i class="fa fa-phone"></i></div>
         <div>
           <div><a href="tel:+2348065170300">+234(0) 806 517 0300</a></div>
           <div><a href="tel:+2349049294332">+234(0) 904 929 4332</a></div>
         </div>
       </div>
     </div>
-    <div class="w-50 container">
-      <h4 style="font-weight: 900;">Do You Have a Prayer Request?</h1>
-      <div>
-        <form action="" method="post" class="form-control">
-          <div class="m-2">
-            <input type="text" class="form-control" name="name" placeholder="Enter Full Name">
-          </div>
-          <div class="m-2">
-            <textarea class="form-control" name="request" placeholder="Enter Your Request"></textarea>
-          </div>
-          <div class="m-2">
-            <input type="submit" value="Send Request" class="btn">
-          </div>
-        </form>
-      </div>
-    </div>
+   
   </div>
 </section>
 <footer class="container mt-5 mb-3">
@@ -163,7 +167,7 @@
 </footer>
 <script>
   // Set the target date for the countdown
-  const targetDate = new Date("2023-12-31T00:00:00").getTime();
+  const targetDate = new Date("2023-12-22T00:00:00").getTime();
 
   function updateCountdown() {
       const currentDate = new Date().getTime();
@@ -196,6 +200,6 @@
   updateCountdown();
 </script>
 <script>
-document.getElementById("navHome").classList.add("active")
+  document.getElementById("navHome").classList.add("active")
 </script>
 {% endblock main %}

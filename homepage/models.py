@@ -23,12 +23,22 @@ class Attendees(models.Model):
     created = models.DateTimeField(default = timezone.now())    
 
     def __str__(self):
-        return f'{self.Full_Name}'
+        return f'{self.Full_Name} -> ID:{self.id}'
     
 
 class Volunteers(models.Model):
-    Attendee = models.ForeignKey(Attendees, on_delete=models.CASCADE)
+    Attendee = models.OneToOneField(Attendees, on_delete=models.CASCADE, related_name='volunteers')
+    Volunteer = models.BooleanField(default=False)
     created = models.DateTimeField(default = timezone.now())    
     
     def __str__(self):
         return f'{self.Attendee}'
+
+
+class prayerRequest(models.Model):
+    Full_Name = models.CharField(max_length=250)
+    Request = models.TextField()
+    created = models.DateTimeField(default = timezone.now())    
+    
+    def __str__(self):
+        return f'{self.Full_Name}'

@@ -64,3 +64,11 @@ h4{
     align-items: center;
     padding-left:0;
 }
+form#myForm > div:first-child{
+    height:100%;
+} 
+@media screen and (min-width:960px) {
+    form#myForm > div:first-child{
+        overflow-y: scroll;
+    } 
+}

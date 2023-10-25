@@ -1,0 +1,57 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block main %}
+<link rel="stylesheet" href="{% static 'css/form.css' %}">
+<style>
+    .registerbtn{
+        display: none;
+    }
+</style>
+<div class="container rounded-5">
+    <div class="register" >
+        <div class="d-flex" style="flex-wrap: wrap; background-color: rgba(0, 0, 0, 0.784);place-content: space-between;height:100%">
+            <div class="text-center" style="align-self: center;flex:1;">
+                <div class="form-header">
+                    <div><img src="{% static 'img/r2r 2.png' %}" alt=""></div>
+                    <p> Have your mind renewed and heart filled with the knowledge of the will of God, and find grace to obey.</p>
+                </div>
+            </div>
+            <form method="post" id='myForm'>
+                <div style="">
+                <center><h4 class="text-center p-3">LogIn</h2></center>
+                <hr>
+                {% csrf_token %}
+                <div class="field" id="fieldContainer">
+                     {{form|crispy}}
+                </div>
+                <br>
+                <div style="text-align: -webkit-center;">
+                    <button type="submit" id="nextButton" style="color: white;background-color: goldenrod;width: 300px;" class="btn">LogIn
+                    </button>
+                </div>
+                </div>
+            </form>
+        </div>
+</div>
+</div>
+
+
+<div id="fieldsItem" style="visibility: hidden;display: none;">
+</div>
+    <script>
+    function addClassesToFormFields() {
+        var form = document.getElementById("myForm");
+        var fields = form.querySelectorAll("input, select, textarea");  // Select all input, select, and textarea elements within the form
+
+        for (var i = 0; i < fields.length; i++) {
+            fields[i].classList.add("form-control");
+            fields[i].classList.add("form-control-lg");
+        }
+    }
+    addClassesToFormFields()
+   
+    document.getElementById("navRegister").classList.add("active")
+</script>
+{% endblock main %}

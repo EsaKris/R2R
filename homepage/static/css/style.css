@@ -3,6 +3,7 @@
     padding:0;
     box-sizing: border-box;
     font-family: 'Roboto';
+    scroll-behavior: smooth;
 }
 a{
     text-decoration:none;
@@ -11,11 +12,31 @@ a{
 p{
     margin-bottom: 0;
 }
+li{
+    list-style: none;
+}
+ul.list-control{
+    padding: 0;
+    margin: 1rem;
+}
+::-webkit-scrollbar{
+    width: 5px;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb{
+    background:rgba(218, 165, 32, 0.645);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:rgba(218, 165, 32, 0.445);
+}
 .active{
     border-bottom: 2px #9f6110 solid;
 }
 .Header-Text{
-    padding: 2rem `1rem;
+    padding: 2rem 1rem;
 }
 body{
     min-height: 100vh;
@@ -25,6 +46,9 @@ nav > div{
     justify-content: space-between;
     align-items: center;
     
+}
+li{
+    align-self: center;
 }
 nav li > div{
     padding: 2px;
@@ -95,7 +119,6 @@ header > div{
 }
 .Header-Image{
     align-self: center;
-    width: 100%;
     text-align: center;
 }
 .CountDown{
@@ -130,7 +153,9 @@ header > div{
     text-align:center;
 }
 
-
+.section1{
+    gap: 3rem;
+}
 
 @media screen and (max-width:960px) {
     .section1{
@@ -138,13 +163,18 @@ header > div{
     }
    #nav-item-list{
         display: none;
-        color: rgba(0, 0, 0, 0.95);
-        background:white;
-        height:100%;
+        background:black;
+        width: 100%;
+        color: #f1f1f1;
         text-align:center;
         display:none;
         flex-direction: column;
         justify-content: center;
+        position: absolute;
+        margin-top: 10vh;
+        padding: 2rem;
+        left: 0;
+        top: 0;
     }
     .nav-item{
         justify-content:right;
@@ -159,16 +189,12 @@ header > div{
     }
     #nav-item-list li{
         padding: 1rem;
-        border-bottom: 1px black solid;
+        border-bottom: 1px #fff solid;
         text-align: left;
     }
-    #nav-item-list{
-        position: absolute;
-        width: auto;
-        height: auto;
-        margin-top: 2rem;
+    #nav-item-list li:last-child{
+        border-bottom: none;
     }
-
     .nav-logo img.phone{
         width:50px;
         display:block;
@@ -192,6 +218,9 @@ header > div{
         max-width: 330px;
         width: 100% !important;
     }
+    .message{
+        padding-top: 2rem !important;
+    }
 }
 @media screen and (min-width:960px) {
     .nav-icons{
@@ -201,7 +230,7 @@ header > div{
         display: none;
     }
    .nav-item{
-    min-width: 40%;
+    min-width: 50%;
    }
    .nav-logo img.laptop{
     width:250px;
@@ -225,7 +254,7 @@ header > div{
 
 .dayslist{
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     text-align: center;
 }
 .dayslist > div { 
@@ -272,7 +301,8 @@ img{
     padding:0 2rem;
 }
 .headSteward > div:first-child{
-    max-width: 500px;
+    max-width: 350px;
+    align-self: center;
 }
 .headSteward > div:first-child > img{
     border-radius:20px
@@ -287,4 +317,12 @@ img{
     padding: 2rem 0;
     background:#9f6110;
     color:white;
+}
+.contacticons i{
+    font-size: 1.6rem;
+}
+.contacticons > div > div:first-child{
+    border-right:2px #9f6110 solid;
+    padding: 1rem;
+    margin: 1rem;
 }
