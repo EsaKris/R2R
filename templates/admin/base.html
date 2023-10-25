@@ -45,6 +45,20 @@
     --delete-button-bg: #ba2121 !important;
     --delete-button-hover-bg: #a41515 !important;
     }
+    
+::-webkit-scrollbar{
+    width: 5px;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb{
+    background:rgba(218, 165, 32, 0.645);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:rgba(218, 165, 32, 0.445);
+}
   </style>
 <title>{% block title %}{% endblock %}</title>
     <link rel="shortcut icon" type="image/jpg" href="/static/img/logo.png" />
@@ -55,7 +69,6 @@
 {% endblock %}
 {% if not is_popup and is_nav_sidebar_enabled %}
   <link rel="stylesheet" href="{% static "admin/css/nav_sidebar.css" %}">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <script src="{% static 'admin/js/nav_sidebar.js' %}" defer></script>
 {% endif %}
 {% block extrastyle %}{% endblock %}
