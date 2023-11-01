@@ -125,10 +125,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = 'static/'
+STATIC_ROOT = '/static/'
 
 MEDIA_URL = 'media/'
-MEDIA_ROOT = 'media/'
+MEDIA_ROOT = '/media/'
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
