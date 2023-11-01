@@ -1,6 +1,5 @@
 from django.db import models
 from django.utils import timezone
-from django_countries.fields import CountryField
 
 GENDER = (
     ('Male', 'Male'),
@@ -14,7 +13,7 @@ class Attendees(models.Model):
     Gender = models.CharField(max_length = 150, choices=GENDER)
     Local_Assembly = models.CharField(max_length=250)
     
-    Nationality = models.CountryField()
+    Nationality = models.CharField(max_length=100)
     State_of_Residence = models.CharField(max_length=100)
     Local_Government_Area = models.CharField(max_length=200)
 
