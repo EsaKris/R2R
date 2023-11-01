@@ -1,0 +1,328 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'Roboto';
+    scroll-behavior: smooth;
+}
+a{
+    text-decoration:none;
+    color:inherit;
+}
+p{
+    margin-bottom: 0;
+}
+li{
+    list-style: none;
+}
+ul.list-control{
+    padding: 0;
+    margin: 1rem;
+}
+::-webkit-scrollbar{
+    width: 5px;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb{
+    background:rgba(218, 165, 32, 0.645);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:rgba(218, 165, 32, 0.445);
+}
+.active{
+    border-bottom: 2px #9f6110 solid;
+}
+.Header-Text{
+    padding: 2rem 1rem;
+}
+body{
+    min-height: 100vh;
+}
+nav > div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+li{
+    align-self: center;
+}
+nav li > div{
+    padding: 2px;
+    font-weight: bold;
+}
+.nav-item{
+    display: flex;
+    min-width: 40%;
+    align-items: center;
+    justify-content: space-between;
+}
+/*  */
+.nav-logo img{
+    display:none;
+}
+.btn{
+    padding: 10px;
+    border: 1px solid #9f6110;
+    color: #9f6110;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 5px;
+}
+.Header-Text h1{
+    color: #9f6110;
+}
+.Header-Text{
+    display: block;
+    align-self: center;
+}
+ #nav-item-list{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    margin-bottom: 0;
+
+}
+header{
+    background: url(../img/bg/4.jpg);
+    background-position: right;
+    background-attachment: fixed;
+    background-size: cover;
+    min-height: 70vh;
+    display: flex;
+}
+header > div{
+    background-color: rgba(0, 0, 0, 0.884);
+    color: white;
+    width: 100%;
+    align-items: center;
+    display: flex;
+}
+
+/* HEADER */
+.Header-Text{
+    max-width: 700px;
+
+}
+.Header{
+    display:flex;
+}
+.Header-Text h1{
+    font-weight: 900;
+    font-family:"Sora";
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.Header-Image{
+    align-self: center;
+    text-align: center;
+}
+.CountDown{
+    
+    min-height:30vh;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    flex-wrap: wrap;
+    color:white;
+    align-items:center
+}
+
+.CountContainer{
+    background:black;
+    display:flex;
+    margin:3rem 0;
+}
+.CountDown h1{
+    font-weight: 900;
+    font-family: "Sora";
+        font-size:3rem;
+        color:white;
+}
+.CountDown div > div:first-child{
+    border-left: 0;
+    padding-left:0px;
+}
+.CountDown div > div{
+    border-left: 1px solid white;
+    padding:0 10px;
+    text-align:center;
+}
+
+.section1{
+    gap: 3rem;
+}
+
+@media screen and (max-width:960px) {
+    .section1{
+        margin-top: 4rem ;
+    }
+   #nav-item-list{
+        display: none;
+        background:black;
+        width: 100%;
+        color: #f1f1f1;
+        text-align:center;
+        display:none;
+        flex-direction: column;
+        justify-content: center;
+        position: absolute;
+        margin-top: 10vh;
+        padding: 2rem;
+        left: 0;
+        top: 0;
+    }
+    .nav-item{
+        justify-content:right;
+        align-items: end;
+        flex-direction: column;
+    }
+    .nav-icons i{
+        font-size:1rem
+    }
+    #nav-item-list li div i{
+        padding-right: 5px;
+    }
+    #nav-item-list li{
+        padding: 1rem;
+        border-bottom: 1px #fff solid;
+        text-align: left;
+    }
+    #nav-item-list li:last-child{
+        border-bottom: none;
+    }
+    .nav-logo img.phone{
+        width:50px;
+        display:block;
+
+    }
+    .Header-Image{
+        display:none
+    }
+    header{
+        min-height:80vh;
+    }
+    .CountDown h1{
+        font-size:1rem;
+    }
+    .CountDown.container{
+        align-content: space-around;
+        padding:1rem !important;
+    }
+        
+    .dayslist > div { 
+        max-width: 330px;
+        width: 100% !important;
+    }
+    .message{
+        padding-top: 2rem !important;
+    }
+}
+@media screen and (min-width:960px) {
+    .nav-icons{
+        display: none;
+    }
+    #nav-item-list i{
+        display: none;
+    }
+   .nav-item{
+    min-width: 50%;
+   }
+   .nav-logo img.laptop{
+    width:250px;
+    display: block;
+    }
+
+    .Header-Text h1{
+        font-size:3rem
+    }
+   
+    .section1{
+        min-height:60vh;
+    }    
+    .CountDown h1{
+        font-size:4rem;
+    }
+    footer .socials{
+        margin: initial;
+    }
+}
+
+.dayslist{
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+}
+.dayslist > div { 
+    width: 30%;
+    box-shadow: 5px 5px 5px 5px #9f61104b;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.dayslist > div > h2 { 
+    max-width: 300px;
+    font-weight: 800;
+}
+.days{
+    padding: 3rem 0;
+    min-height: 60vh;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.days h1, .text h1 {
+    font-weight: 900;
+}
+.location{
+    min-height:50vh;
+    justify-content: space-between;
+}
+.location .text{
+    padding:2rem;
+    align-self:center;
+}
+.text{
+    max-width:500px
+}
+
+
+img{
+    width:100%;
+}
+.headSteward{
+    padding: 3rem 0;
+}
+.headSteward > div{
+    padding:0 2rem;
+}
+.headSteward > div:first-child{
+    max-width: 350px;
+    align-self: center;
+}
+.headSteward > div:first-child > img{
+    border-radius:20px
+}
+.headSteward h2{
+    font-weight: 900;
+}
+.location{
+    padding: 2rem 0;
+}
+.days{
+    padding: 2rem 0;
+    background:#9f6110;
+    color:white;
+}
+.contacticons i{
+    font-size: 1.6rem;
+}
+.contacticons > div > div:first-child{
+    border-right:2px #9f6110 solid;
+    padding: 1rem;
+    margin: 1rem;
+}
