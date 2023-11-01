@@ -1,37 +1,21 @@
 {% extends "base.html" %}
 {% block main %}
 <style>
-    .coner {
-        text-align: center;
-        max-width: 600px;
+    main{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
-    
-    .coner .emoji {
-        font-size: 8rem;
-        margin-bottom: 20px;
-    }
-    
-    .coner h1 {
-        font-size: 3rem;
-        margin-bottom: 20px;
-    }
-    
-    .coner p {
-        font-size: 1.5rem;
-        margin-bottom: 20px;
-    }
-    
-    .coner .btn {
-        font-size: 1.25rem;
-        padding: 10px 20px;
+    .emoji{
+        font-size: 2rem;
     }
 </style>
-</center>
-<div class="coner">
+<div class="container" style="text-align: center;">
     <div class="emoji">😕</div>
+    <br>
+    <iframe src="https://giphy.com/embed/feO9ESQit0QM0" style="max-width: 200px; border-radius: 15px;" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
     <h1>Oops! Page Not Found</h1>
     <p>We couldn't find the page you were looking for.</p>
-    <a class="btn btn-primary" href="/">Go back to Home</a>
+    <a class="btn btn-primary text-white" href="/">Go back to Home</a>
 </div>
-</center>
 {% endblock main %}
