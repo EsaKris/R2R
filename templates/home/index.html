@@ -167,14 +167,14 @@
 </footer>
 <script>
   // Set the target date for the countdown
-  const targetDate = new Date("2023-12-22T00:00:00").getTime();
+  const targetDate = new Date("2023-12-20T00:00:00").getTime();
 
   function updateCountdown() {
       const currentDate = new Date().getTime();
       const timeRemaining = targetDate - currentDate;
 
       if (timeRemaining <= 0) {
-          document.getElementById("countdown").innerHTML = "Countdown expired!";
+          document.getElementById("countdown").innerHTML = "IS NOW!";
           return;
       }
 
