@@ -247,5 +247,5 @@ countryListAlpha3 = (
     ("YEM", "Yemen"),
     ("ZMB", "Zambia"),
     ("ZWE", "Zimbabwe"),
-    ("ALA": "Åland Islands")
+    ("ALA", "Åland Islands")
 )
