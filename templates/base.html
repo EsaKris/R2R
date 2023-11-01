@@ -51,19 +51,20 @@
                     <img class="phone" src="{% static 'img/logo.png' %}" alt="">
                 </a>
             </div>
+            <style>
+                @media screen and (max-width:960px) {
+                    .ph{
+                        display: none;
+                    }
+                }
+            </style>
             <div class="nav-item">
-                <div class="nav-icons d-flex" style="align-items: center; justify-content: space-between;min-width: 155px;">
+                <div class="nav-icons ph d-flex" style="align-items: center; justify-content: space-between;min-width: 155px;">
                     <div>
                         <a id="nav-icons"><i class="fa fa-bars"></i></a>
                     </div>
-                    <style>
-                        @media screen and (max-width:960px) {
-                            .ph{
-                                display: none;
-                            }
-                        }
-                    </style>
-                    <div class="btn ph">
+                    
+                    <div class="btn">
                         <i class="fa fa-donate"></i>
                         <a href="https://paystack.com/pay/R2R23">Give Online</a>
                     </div>
