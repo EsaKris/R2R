@@ -20,6 +20,11 @@ from django.contrib.auth.views import LogoutView, LoginView
 from django.conf import settings
 from django.conf.urls.static import static
 
+handler404 = 'homepage.views.custom_page_not_found_view'
+handler500 = 'homepage.views.custom_error_view'
+handler403 = 'homepage.views.custom_permission_denied_view'
+handler400 = 'homepage.views.custom_bad_request_view'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('homepage.urls')),
