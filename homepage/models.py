@@ -9,8 +9,8 @@ GENDER = (
 
 class Attendees(models.Model):
     Full_Name = models.CharField(max_length=250)
-    Email = models.EmailField()
-    Phone = models.CharField(max_length=20)
+    Email = models.EmailField(unique=True)
+    Phone = models.CharField(max_length=20, unique=True)
     Gender = models.CharField(max_length = 150, choices=GENDER)
     Local_Assembly = models.CharField(max_length=250)
     
