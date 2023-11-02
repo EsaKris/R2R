@@ -18,8 +18,8 @@ class Attendees(models.Model):
     State_of_Residence = models.CharField(max_length=100)
     Local_Government_Area = models.CharField(max_length=200)
 
-    Are_you_a_pastor = models.BooleanField(default=False)
-    will_you_be_camping = models.BooleanField(default=False)
+    Are_you_a_pastor = models.BooleanField(default=False, verbose_name="Are you a pastor?")
+    will_you_be_camping = models.BooleanField(default=False, verbose_name="will you be camping with us?")
 
     created = models.DateTimeField(default = timezone.now())    
 
