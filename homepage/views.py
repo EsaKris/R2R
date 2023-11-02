@@ -44,6 +44,9 @@ def prayerRequest(request):
 def homepage(request):
     return render(request, "home/index.html")
 
+def donate(request):
+    return render(request, "home/donate.html")
+
 def AttendeeListView(request):
     if request.user.is_staff:
         Attendee = Attendees.objects.all().order_by('-created')
