@@ -80,10 +80,11 @@
     document.getElementById("navRegister").classList.add("active")
 
     async function copyaccount() {
-            let copyText = document.getElementById("account").val;
+            let copyText = document.getElementById("account").innerText;
             try {
                 if (navigator?.clipboard?.writeText) {
                 await navigator.clipboard.writeText(copyText);
+                console.log(copyText)
                 }
             } catch (err) {
                 console.error(err);
