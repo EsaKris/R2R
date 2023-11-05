@@ -41,7 +41,7 @@
                             </tr>
                             <tr>
                                 <th>Number</th>
-                                <td>2007098822 <i class="fa fa-copy"></i></td>
+                                <td><span id="account">2007098822</span> <a onclick="copyaccount()"><i class="fa fa-copy"></i></a></td>
                             </tr>
                             <tr>
                                 <th>Bank</th>
@@ -78,5 +78,17 @@
     addClassesToFormFields()
    
     document.getElementById("navRegister").classList.add("active")
+
+    function copyaccount() {
+            let copyText = 
+                document.getElementById("account");
+ 
+                copyText.select();
+            document.execCommand("copy");
+             
+            document.getElementById("account")
+                .innerHTML = "Copied the acoount: "
+                + copyGfGText.value;
+        }
 </script>
 {% endblock main %}
