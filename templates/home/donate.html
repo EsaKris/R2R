@@ -80,10 +80,8 @@
     document.getElementById("navRegister").classList.add("active")
 
     function copyaccount() {
-            let copyText = 
-                document.getElementById("account");
- 
-                copyText.select();
+            let copyText = document.getElementById("account");
+            copyText.select();
             document.execCommand("copy");
              
             document.getElementById("account")
