@@ -79,14 +79,16 @@
    
     document.getElementById("navRegister").classList.add("active")
 
-    function copyaccount() {
-            let copyText = document.getElementById("account");
-            copyText.select();
-            document.execCommand("copy");
-             
-            document.getElementById("account")
-                .innerHTML = "Copied the acoount: "
-                + copyGfGText.value;
+    async function copyaccount() {
+            let copyText = document.getElementById("account").val;
+            try {
+                if (navigator?.clipboard?.writeText) {
+                await navigator.clipboard.writeText(copyText);
+                }
+            } catch (err) {
+                console.error(err);
+            }
+
         }
 </script>
 {% endblock main %}
