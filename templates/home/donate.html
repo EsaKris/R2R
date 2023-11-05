@@ -41,7 +41,7 @@
                             </tr>
                             <tr>
                                 <th>Number</th>
-                                <td><span id="account">2007098822</span> <a onclick="copyaccount()"><i class="fa fa-copy"></i></a></td>
+                                <td><span id="account">2007098822</span> <a onclick="copyaccount()"><i class="fa fa-copy" id="copied"></i></a></td>
                             </tr>
                             <tr>
                                 <th>Bank</th>
@@ -84,7 +84,7 @@
             try {
                 if (navigator?.clipboard?.writeText) {
                 await navigator.clipboard.writeText(copyText);
-                console.log(copyText)
+                document.getElementById("copied").innerText="copied"
                 }
             } catch (err) {
                 console.error(err);
