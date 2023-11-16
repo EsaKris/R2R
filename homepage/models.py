@@ -27,7 +27,7 @@ class Attendees(models.Model):
     created = models.DateTimeField(default = timezone.now())    
 
     def qr_code(self):
-        qr_code = make(self.uid)
+        qr_code = make(self.id)
         basename = str(self.Full_Name) + '_QR_CODE.png'
         qr_code.save('media/QR_CODE/{}'.format(basename))
         return '/media/QR_CODE/{}'.format(basename)
