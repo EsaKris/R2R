@@ -28,7 +28,7 @@ class Attendees(models.Model):
 
     def qr_code(self):
         qr_code = make(self.id)
-        basename = str(self.phone) + '_QR_CODE.png'
+        basename = str(self.Phone) + '_QR_CODE.png'
         qr_code.save('media/QR_CODE/{}'.format(basename))
         return '/media/QR_CODE/{}'.format(basename)
 
