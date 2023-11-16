@@ -53,7 +53,7 @@
     <script>
     function addClassesToFormFields() {
         var form = document.getElementById("myForm");
-        var fields = form.querySelectorAll("input, select, textarea");  // Select all input, select, and textarea elements within the form
+        var fields = document.querySelectorAll("input, select, textarea");  // Select all input, select, and textarea elements within the form
 
         for (var i = 0; i < fields.length; i++) {
             fields[i].classList.add("form-control");
