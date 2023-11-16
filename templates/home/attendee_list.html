@@ -57,8 +57,8 @@
                 }
                 .card{
                     background: #000;
-                    padding: 1rem;
-                    max-width: 400px;
+                    padding: 0.5rem;
+                    max-width: 300px;
                     width: 100%;
                 }
                 .card > div > div {
@@ -66,7 +66,7 @@
                 }
                 .card > div{
                     display: block;
-                    margin: 1rem;
+                    margin: 0.5rem;
                     border: 1px white solid !important;
                     border-radius: 20px;
                     color: white;
@@ -74,9 +74,15 @@
                     text-align: center;
                     height: 100%;
                 } 
-                .card > div > div:first-child > img{
+                .card > div > div:first-child > img {
                     margin: auto;
-                    width: 60px;
+                    width: 40px;
+                    
+                }
+                .card >div > div:nth-child(2) {
+                    margin: auto;
+                    min-width: 100%;
+                    min-height: 150px;
                 }
                 .card > div > div:nth-child(3) {
                     background: #6c4007;
@@ -91,7 +97,8 @@
                 .attendee .card{
                     background: #6c4007 !important;
                     color: #000 !important;
-                }            
+                }  
+                          
             </style>
 
             <div class="cardlist">
@@ -101,23 +108,23 @@
                         <div>
                             <div>
                                 <img src="{% static 'img/logo.png' %}" alt="">
-                                <h5>Again and Afresh</h5>
-                                <h6><i>The Gathering Of Belivers</i></h6>
+                                <h6 style="margin-bottom: 0;">Again and Afresh</h6>
+                                <p><i>The Gathering Of Belivers</i></p>
                             </div>
                             <div>
                                 <img src="{% static 'img/r2r 2.png' %}" alt="">
                             </div>
                             <div>
-                                <h2>{{ attendee.Full_Name | title }}</h2>
+                                <h4>{{ attendee.Full_Name | title }}</h4>
                             </div>
                             <div>
-                                <h4><i>{% if attendee.volunteers.Volunteer %}
+                                <h6><i>{% if attendee.volunteers.Volunteer %}
                                     VOLUNTEER
                                     {% elif attendee.Are_you_a_pastor %}
                                     PASTOR
                                     {% else %}
                                     PARTICIPANT
-                                {% endif %}</i></h4>
+                                {% endif %}</i></h6>
                         </div>
                         </div>
                     </div>
@@ -125,16 +132,14 @@
                         <div>
                             <div>
                                 <img src="{% static 'img/logo.png' %}" alt="">
-                                <h5>Again and Afresh</h5>
-                                <h6><i>The Gathering Of Belivers</i></h6>
+                                <h6  style="margin-bottom: 0;">Again and Afresh</h6>
+                                <p><i>The Gathering Of Belivers</i></p>
                             </div>
                             <div>
-                                <div >
-                                    <img style="width: 170px;" src="{{attendee.qr_code}}" alt="">
-                                </div>
+                                    <img style="width: 150px;" src="{{attendee.qr_code}}" alt="">
                             </div>
-                            <div><h2>{{attendee.id}}</h2></div>
-                            <div><h4>againandafresh.org</h4></div>
+                            <div><h4>{{attendee.id}}</h4></div>
+                            <div><h6>againandafresh.org</h6></div>
                         </div>
                     </div>
                 </div>
