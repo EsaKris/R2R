@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-2$#4sy=d#f5a6z@!i&sb62x9ujfx9%v-!^9qlah!ou4bcj+m&n'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     
     # apps
     'homepage',
+    'attendance',
 
     #packages
     'import_export',
@@ -128,7 +129,7 @@ STATIC_URL = 'static/'
 STATIC_ROOT = '/static/'
 
 MEDIA_URL = 'media/'
-MEDIA_ROOT = '/media/'
+MEDIA_ROOT = 'media/'
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"

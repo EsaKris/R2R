@@ -50,6 +50,16 @@ def donate(request):
 def AttendeeListView(request):
     if request.user.is_staff:
         Attendee = Attendees.objects.all().order_by('-created')
+        for attendee in Attendee:
+            if len(str(attendee.id)) == 4:
+                attendee.id
+            elif len(str(attendee.id)) == 3:
+                attendee.id = f"0{attendee.id}"
+            elif len(str(attendee.id)) == 2:
+                attendee.id = f"00{attendee.id}"
+            elif len(str(attendee.id)) == 1:
+                attendee.id = f"000{attendee.id}"
+            
     else:
         return redirect('/')
     return render(request, "home/attendee_list.html", {'Attendee':Attendee, 'form':AttendeeForm()})    

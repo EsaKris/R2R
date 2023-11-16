@@ -1,0 +1,151 @@
+{% extends "base.html" %} {% load crispy_forms_tags %} {% load static %} 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/account/login.css' %}" />
+
+<link rel="stylesheet" href="{% static 'css/worker/style.css' %}" />
+{% endblock head %} {% block title %} Department {% endblock title %} 
+{% block main %}
+<style>
+    .departments {
+      display: grid;
+      grid-template-columns: 25% 25% 25% 25%;
+    }
+    .department {
+      margin: 10px;
+      padding: 10px;
+      border-radius: 15px;
+      box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.23);
+    }
+    .create-department {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px;
+    }
+    .breif ul {
+      display: block !important;
+    }
+    .breif {
+      display: flex;
+      width: 100%;
+      justify-content: space-around;
+    }
+    .phone {
+      display: block;
+    }
+    .phone {
+      display: table-cell;
+    }
+    @media screen and (max-width: 960px) {
+      .breif,
+      .phone {
+        display: none;
+      }
+    }
+    fieldset{
+      border-width:2px;
+      border-style: groove;
+      border-color: rgb(192, 192, 192);
+      border-image: initial;
+      padding:1rem 2rem;
+      max-width: 500px;
+      border-radius: 15px;
+      margin-bottom: 2rem;
+    }
+    legend {
+      display: block;
+      padding-inline-start: 2px;
+      padding-inline-end: 2px;
+      border-width: initial;
+      border-style: none;
+      border-color: initial;
+      border-image: initial;
+      float: none;
+      width: fit-content;
+  }
+  legend h4{
+    margin: 0;
+  }
+  </style>
+<div class="container department-box mt-5">
+  {% if request.user.is_staff %}
+
+      <fieldset class="form-box" id="form-box">
+        <legend class="form-head"><h4>Create Attendance</h4></legend>
+        <form
+      action=""
+      method="post"
+      style="height: 100%;  margin: 1rem 0"
+    >
+      {% csrf_token %} {{form | crispy}}
+      <div>
+        <input type="submit" value="Create Attendance" class="btn" />
+      </div>
+    </form>
+  </fieldset>
+  {% endif %}
+
+  <div>
+      <div><h2>Attendance List</h2></div>
+  </div>
+  <table class="table table-striped mt-1">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Title</th>
+        <th scope="col">Date</th>
+        <th scope="col" class="text-center">Census</th>
+        <th scope="col" class="phone">Status</th>
+        <th scope="col" class="">
+          <i style="padding: 8px 15px" class="fa fa-download"></i>
+        </th>
+        <th scope="col" class="text-center phone">Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for item in attendance %}
+      <tr>
+        <th scope="row">{{forloop.counter}}</th>
+
+        <td>
+          <a href="{% url 'attendanceDetail' item.id %}"
+            >{{item.title | title}}</a
+          >
+        </td>
+        <td>{{item.date|date:"d/m/y"}}</td>
+        <td class="text-center">{{item.list.count}}</td>
+        <td class="phone">
+          {% if item.start == True and item.end == False %} Started {% elif
+          item.start == False and item.end == False %} Pending {% elif
+          item.start == True and item.end == True %} Ended {% endif %}
+        </td>
+        <td class="">
+          <a
+            class="btn btn-outline"
+            href="{% url 'generate_word_doc' item.id %}"
+            ><i class="fa fa-download"></i
+          ></a>
+        </td>
+        <td class="phone">
+          <a class="btn btn-outline" href="{% url 'attendanceDetail' item.id %}"
+            ><i class="fa fa-eye"></i
+          ></a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<script src="{% static 'js/worker/scripts.js' %}"></script>
+<!-- <div class="modal">
+        <center>
+            <h3>Create attendance</h3>
+            <p>Establish a new attendance </p>
+        </center>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{form | crispy}}
+            <input class="btn" type="submit" value="Create Department">
+        </form>
+    </div> -->
+{% endblock main %}

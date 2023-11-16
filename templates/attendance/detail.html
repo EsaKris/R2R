@@ -1,0 +1,556 @@
+{% extends "base.html" %} {% load crispy_forms_tags %} {% load static %} {% block head %}
+
+<link rel="stylesheet" href="{% static 'css/worker/style.css' %}" />
+<link rel="stylesheet" href="{% static 'css/worker/department.css' %}" />
+{% endblock head %} {% block title %}{{ attendance.name | title }} Attendance {% endblock title %} {% block main %}
+<style>
+  #mianeor {
+    height: 100%;
+  }
+  body {
+    overflow: hidden;
+  }
+  #task_tab {
+    width: 55%;
+  }
+  #comment_tab {
+    width: 40%;
+  }
+  #action_link {
+    display: none;
+  }
+  @media screen and (max-width: 960px) {
+    .vertical {
+      display: none;
+    }
+    #task_tab {
+      width: 100%;
+      padding: 0 20px;
+    }
+    #comment_tab {
+      width: 0%;
+      margin-top: 10px;
+      display: none;
+    }
+  }
+  @media screen and (min-width: 960px) {
+    #message_list_icon {
+      display: none;
+    }
+  }
+  h1 {
+    margin: 0px;
+  }
+</style>
+
+<div
+  class="grid container"
+  style="display: flex; height: 85vh; justify-content: space-around"
+>
+  <section id="task_tab" style="overflow-y: scroll; padding: 10px">
+    <div style="display: flex; justify-content: space-between">
+      <h5>{{ attendance.name | title }} Attendance</h5>
+      <div style="align-self: center">
+        <div style="display: flex; position: relative">
+          <div>
+            <a
+              href="#"
+              onclick="openscanner()"
+              class="mx-3"
+              id="message_list_icon"
+            >
+              <i style="font-size: 1.5rem" class="fa fa-qrcode"></i>
+            </a>
+          </div>
+        </div>
+        <script>
+          const action_link = document.getElementById("action_link");
+          action_link.style.display = "none";
+          function openactionlink() {
+            if (action_link.style.display == "none") {
+              action_link.style.display = "block";
+            } else {
+              action_link.style.display = "none";
+            }
+          }
+        </script>
+      </div>
+    </div>
+    <hr />
+    <div>
+      <h6>{{attendance.title | title}}</h6>
+      <p>{{attendance.date}}</p>
+
+      <br />
+      <div class="">
+        <a
+          class="btn btn-outline"
+          href="{% url 'generate_word_doc' attendance.id %}"
+          ><i class="fa fa-download"></i
+        ></a>
+      </div>
+    </div>
+    <br />
+    <table class="table table-striped mt-1">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col" style="text-align: left; margin-left: 10px">Name</th>
+          <th scope="col">timein</th>
+          <th scope="col" class="phone">Download</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td style="text-align: left; margin-left: 10px">All</td>
+          <td>{{attendance_list.all.count}}</td>
+          <td class="phone">
+            <a class="btn btn-outline" onclick=""
+              ><i class="fa fa-download"></i
+            ></a>
+          </td>
+          <td>
+            <a class="btn btn-outline" onclick="alluserlist()"
+              ><i class="fa fa-eye"></i
+            ></a>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td style="text-align: left; margin-left: 10px">Pastors</td>
+          <td>{{attendance_list.Pastors.count}}</td>
+          <td class="phone">
+            <a class="btn btn-outline" onclick=""
+              ><i class="fa fa-download"></i
+            ></a>
+          </td>
+          <td>
+            <a class="btn btn-outline" onclick="Pastorslist()"
+              ><i class="fa fa-eye"></i
+            ></a>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">5</th>
+          <td style="text-align: left; margin-left: 10px">Workers</td>
+          <td>{{attendance_list.Workers.count}}</td>
+          <td class="phone">
+            <a class="btn btn-outline" onclick=""
+              ><i class="fa fa-download"></i
+            ></a>
+          </td>
+          <td>
+            <a class="btn btn-outline" onclick="Workerslist()"
+              ><i class="fa fa-eye"></i
+            ></a>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">6</th>
+          <td style="text-align: left; margin-left: 10px">Members</td>
+          <td>{{attendance_list.Members.count}}</td>
+          <td class="phone">
+            <a class="btn btn-outline" onclick=""
+              ><i class="fa fa-download"></i
+            ></a>
+          </td>
+          <td>
+            <a class="btn btn-outline" onclick="Memberslist()"
+              ><i class="fa fa-eye"></i
+            ></a>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">7</th>
+          <td style="text-align: left; margin-left: 10px">First Timers</td>
+          <td>{{attendance_list.FirstTimers.count}}</td>
+          <td class="phone">
+            <a class="btn btn-outline" onclick=""
+              ><i class="fa fa-download"></i
+            ></a>
+          </td>
+          <td>
+            <a class="btn btn-outline" onclick="FirstTimerslist()"
+              ><i class="fa fa-eye"></i
+            ></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  <div class="vertical" style="border-left: 1px gray solid"></div>
+
+  <script
+    type="text/javascript"
+    src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"
+  ></script>
+
+  <section
+    style="position: relative; padding-top: 10px; overflow-y: scroll"
+    id="comment_tab"
+  >
+    <div style="display: flex; justify-content: space-between; padding: 0 5px">
+      <h5 id="sideHeader" style="align-self: center">Scanner</h5>
+      <h1 style="align-self: center" class="mx-4">
+        <a href="#" onclick="iconclosemessage()" id="message_list_icon_close">
+          <i style="font-size: 1.6rem" class="fa fa-times"></i>
+        </a>
+      </h1>
+    </div>
+    <hr />
+    
+   
+    <div
+      style="
+        justify-content: center;
+        padding-right: 10px;
+        display: flex;
+        align-items: center;
+      "
+    >
+      <div id="comment_box">
+        <br id="ScannerAttendanceTable" />
+        <center>
+          <div id="result"></div>
+          <div id="reader" style="width: 300px; max-height: 250px"></div>
+          <br />
+        </center>
+        `
+      </div>
+    </div>
+    <script
+      src="https://unpkg.com/html5-qrcode"
+      type="text/javascript"
+    ></script>
+    <script></script>
+  </section>
+</div>
+<style>
+  @media screen and (min-width:960px) {
+    #comment_tab{
+      max-width: 40% !important;
+    }
+    #task_tab{
+    max-width: 55% !important;
+  }
+}
+</style>
+<script>
+  const sideHeader = document.getElementById("sideHeader");
+  const task_tab = document.getElementById("task_tab");
+  const comment_box = document.getElementById("comment_box");
+  const comment_tab = document.getElementById("comment_tab");
+  const message_list_icon = document.getElementById("message_list_icon");
+  const message_list_icon_close = document.getElementById(
+    "message_list_icon_close"
+  );
+  message_list_icon_close.style.display = "none";
+
+  function iconopenmessage() {
+    task_tab.style.width = 0;
+    task_tab.style.padding = 0;
+    comment_tab.style.width = "100%";
+    comment_tab.style.display = "block";
+    message_list_icon_close.style.display = "block";
+    message_list_icon.style.display = "none";
+    console.log(task_tab.style.width);
+  }
+  function iconclosemessage() {
+    task_tab.style.width = "100% ";
+    task_tab.style.padding = "20px";
+    comment_tab.style.display = "none";
+    comment_tab.style.width = 0;
+    comment_tab.style.padding = "0px";
+    message_list_icon_close.style.display = "none";
+    message_list_icon.style.display = "block";
+    console.log(task_tab.style.width);
+  }
+
+  function openscanner() {
+    if (task_tab.style.width == 0 || task_tab.style.width == "100%") {
+      iconopenmessage();
+    }
+  }
+    sideHeader.innerHTML = "Scanner ";
+    comment_box.innerHTML = ` <br>
+                <br id="ScannerAttendanceTable">
+                <center> 
+                    <div id="result"></div>
+                    <div id="reader" style="width: 300px;max-height: 250px;"></div>
+                    <br />
+                </center>`;
+  const scanner = new Html5QrcodeScanner("reader", {
+    qrbox: {
+      width: 200,
+      height: 200,
+    },
+    fps: 20,
+  });
+  scanner.render(success, error);
+
+  async function success(result) {
+    console.log(result);
+
+    fetch("/attendance/take-Attendance/{{attendance.id}}/" + result)
+      .then((response) => response.json())
+      .then((data) => {
+        if (result.message) {
+          document.getElementById("result").innerHTML = ` 
+                        <p style="margin-top:10px;padding:20px;background:gray;font-weight:bold;border-radius:10px">${data.message}</p>
+                            `;
+        } else {
+          const d = new Date(data.time_in);
+          document.getElementById("result").innerHTML = ` 
+                        <h2> Success! </h2> 
+                        <p style="margin-top:10px;padding:20px;background:gray;font-weight:bold;border-radius:10px">${
+                          data.attendee
+                        } - ${d.toLocaleString()} </p>
+                        <br>
+                            `;
+        }
+      });
+  }
+
+  function error(err) {
+    console.log(err);
+  }
+  
+  function alluserlist() {
+    if (task_tab.style.width == 0 || task_tab.style.width == "100%") {
+      iconopenmessage();
+    }
+    sideHeader.innerHTML = "All User Attendance List";
+    comment_box.innerHTML = `
+        <button class="btn" id="exportButton_AllAttendanceTable">Export to Excel</button>
+<br>        <br>    
+        <table id="AllAttendanceTable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Full Name<
+                          /th>
+                        <th>Department/Phone</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in attendance_list.all.all %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{item.attendee.last_name | title}} {{item.attendee.first_name | title}}</td>
+                        <td>{% if item.attendee.primarywork %}{{item.attendee.primarywork.worker.department}} - {{item.attendee.primarywork.worker.unit}} unit{% else %}{{item.attendee.phone}}{% endif %}</td>
+                        <td>{{item.time_in.time}}</td>
+                    </tr>
+                    {% endfor %}    
+                <tbody>
+            </table>`;
+  }
+  function Pastorslist() {
+    if (task_tab.style.width == 0 || task_tab.style.width == "100%") {
+      iconopenmessage();
+    }
+    sideHeader.innerHTML = "Pastors User Attendance List";
+    comment_box.innerHTML = `
+        <button class="btn" id="exportButton_PastorsAttendanceTable">Export to Excel</button>
+<br>        <br>    
+        <table id="PastorsAttendanceTable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Full Name</th>
+                        <th>Department/Phone</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in attendance_list.Pastors.list %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{item.attendee.last_name | title}} {{item.attendee.first_name | title}}</td>
+                        <td>{% if item.attendee.primarywork %}{{item.attendee.primarywork.worker.department}} - {{item.attendee.primarywork.worker.unit}} unit{% else %}{{item.attendee.phone}}{% endif %}</td>
+                        <td>{{item.time_in.time}}</td>
+                    </tr>
+                    {% endfor %}    
+                <tbody>
+            </table>`;
+  }
+  function Hodslist() {
+    if (task_tab.style.width == 0 || task_tab.style.width == "100%") {
+      iconopenmessage();
+    }
+    sideHeader.innerHTML = "Hods User Attendance List";
+    comment_box.innerHTML = `
+        <button class="btn" id="exportButton_HodsAttendanceTable">Export to Excel</button>
+<br>        <br>    
+        <table id="HodsAttendanceTable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Full Name</th>
+                        <th>Department/Phone</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in attendance_list.Hods.list %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{item.attendee.last_name | title}} {{item.attendee.first_name | title}}</td>
+                        <td>{% if item.attendee.primarywork %}{{item.attendee.primarywork.worker.department}} - {{item.attendee.primarywork.worker.unit}} unit{% else %}{{item.attendee.phone}}{% endif %}</td>
+                        <td>{{item.time_in.time}}</td>
+                    </tr>
+                    {% endfor %}    
+                <tbody>
+            </table>`;
+  }
+  function Houslist() {
+    if (task_tab.style.width == 0 || task_tab.style.width == "100%") {
+      iconopenmessage();
+    }
+    sideHeader.innerHTML = "Hous User Attendance List";
+    comment_box.innerHTML = `
+        <button class="btn" id="exportButton_HousAttendanceTable">Export to Excel</button>
+<br>        <br>    
+        <table id="HousAttendanceTable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Full Name</th>
+                        <th>Department/Phone</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in attendance_list.Hous.list %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{item.attendee.last_name | title}} {{item.attendee.first_name | title}}</td>
+                        <td>{% if item.attendee.primarywork %}{{item.attendee.primarywork.worker.department}} - {{item.attendee.primarywork.worker.unit}} unit{% else %}{{item.attendee.phone}}{% endif %}</td>
+                        <td>{{item.time_in.time}}</td>
+                    </tr>
+                    {% endfor %}    
+                <tbody>
+            </table>`;
+  }
+  function Workerslist() {
+    if (task_tab.style.width == 0 || task_tab.style.width == "100%") {
+      iconopenmessage();
+    }
+    sideHeader.innerHTML = "Workers User Attendance List";
+    comment_box.innerHTML = `
+        <button class="btn" id="exportButton_WorkersAttendanceTable">Export to Excel</button>
+<br>        <br>    
+        <table id="WorkersAttendanceTable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Full Name</th>
+                        <th>Department/Phone</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in attendance_list.Workers.list %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{item.attendee.last_name | title}} {{item.attendee.first_name | title}}</td>
+                        <td>{% if item.attendee.primarywork %}{{item.attendee.primarywork.worker.department}} - {{item.attendee.primarywork.worker.unit}} unit{% else %}{{item.attendee.phone}}{% endif %}</td>
+                        <td>{{item.time_in.time}}</td>
+                    </tr>
+                    {% endfor %}    
+                <tbody>
+            </table>`;
+  }
+  function Workerslist() {
+    if (task_tab.style.width == 0 || task_tab.style.width == "100%") {
+      iconopenmessage();
+    }
+    sideHeader.innerHTML = "Workers User Attendance List";
+    comment_box.innerHTML = `
+        <button class="btn" id="exportButton_WorkersAttendanceTable">Export to Excel</button>
+<br>        <br>    
+        <table id="WorkersAttendanceTable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Full Name</th>
+                        <th>Department/Phone</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in attendance_list.Workers.list %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{item.attendee.last_name | title}} {{item.attendee.first_name | title}}</td>
+                        <td>{% if item.attendee.primarywork %}{{item.attendee.primarywork.worker.department}} - {{item.attendee.primarywork.worker.unit}} unit{% else %}No Primary Department{% endif %}</td>
+                        <td>{{item.time_in.time}}</td>
+                    </tr>
+                    {% endfor %}    
+                <tbody>
+            </table>`;
+  }
+  function Memberslist() {
+    if (task_tab.style.width == 0 || task_tab.style.width == "100%") {
+      iconopenmessage();
+    }
+    sideHeader.innerHTML = "Members User Attendance List";
+    comment_box.innerHTML = `
+        <button class="btn" id="exportButton_MembersAttendanceTable">Export to Excel</button>
+<br>        <br>    
+        <table id="MembersAttendanceTable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Full Name</th>
+                        <th>Department/Phone</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in attendance_list.Members.list %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{item.attendee.last_name | title}} {{item.attendee.first_name | title}}</td>
+                        <td>{% if item.attendee.primarywork %}{{item.attendee.primarywork.worker.department}} - {{item.attendee.primarywork.worker.unit}} unit{% else %}{{item.attendee.phone}}{% endif %}</td>
+                        <td>{{item.time_in.time}}</td>
+                    </tr>
+                    {% endfor %}    
+                <tbody>
+            </table>`;
+  }
+  function FirstTimerslist() {
+    if (task_tab.style.width == 0 || task_tab.style.width == "100%") {
+      iconopenmessage();
+    }
+    sideHeader.innerHTML = "First Timers User Attendance List";
+    comment_box.innerHTML = `
+        <button class="btn" id="exportButton_FirstAttendanceTable">Export to Excel</button>
+<br>        <br>    
+        <table id="FirstAttendanceTable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Full Name</th>
+                        <th>Department/Phone</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in attendance_list.FirstTimers.list %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{item.attendee.last_name | title}} {{item.attendee.first_name | title}}</td>
+                        <td>{% if item.attendee.primarywork %}{{item.attendee.primarywork.worker.department}} - {{item.attendee.primarywork.worker.unit}} unit{% else %}{{item.attendee.phone}}{% endif %}</td>
+                        <td>{{item.time_in.time}}</td>
+                    </tr>
+                    {% endfor %}    
+                <tbody>
+            </table>`;
+  }
+</script>
+<script src="{% static 'js/worker/scripts.js' %}"></script>
+
+{% endblock main %}

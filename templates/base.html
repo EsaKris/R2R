@@ -33,13 +33,11 @@
     <title>Again And Afresh The Gathering of Believers</title>
     <link rel="icon" href="{% static '/img/logo.ico' %}" />
     
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" integrity="sha512-b2QcS5SsA8tZodcDtGRELiGv5SaKSk1vDHDaQRda0htPYWZ6046lr3kJ5bAAQdpV2mmA/4v0wQF9MyU6/pDIAg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link href='https://fonts.googleapis.com/css?family=Sora' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
         <style>
             @media screen and (min-width:960px) {
                 .ph{
@@ -49,7 +47,7 @@
         </style>
 </head>
 <body>
-        <nav class="p-2" style="max-height:20vh;position: fixed;width: 100%;background: #fff;">
+        <nav class="p-2" style="max-height:20vh;position: fixed;width: 100%;background: #fff;z-index: 9999999;">
             <div class="container">
             <div class="nav-logo">
                 <a href="/">
@@ -101,15 +99,54 @@
                                 .nav-item {
                                     min-width: 63%;
                                 }
+                                #yurowe{
+                                    position: absolute;
+                                }
+                            }
+                            #yurowwe li{
+                                list-style: disc;
+                                padding: 5px;
+                                border-bottom: 1px #fff solid;
                             }
                         </style>
+                        
                         {% if user.is_staff %}
                             <li id="navList">
                                 <div>
                                     <i class="fa fa-dashboard"></i>
-                                    <a href="/admin" onclick="list()">Admin</a>
+                                    <a href="#" id="teywi">Admin</a>
                                 </div>
+                                <ul style="display: none;padding: 0;" id="yurowwe"> 
+                                    <li id="navList">
+                                        <div>
+                                            <i class="fa fa-dashboard"></i>
+                                            <a href="/admin" onclick="list()">Dashborad</a>
+                                        </div>
+                                    </li>
+                                    <li id="navList">
+                                        <div>
+                                            <i class="fa fa-scan"></i>
+                                            <a href="{% url 'attendance-list' %}" >Attendance</a>
+                                        </div>
+                                    </li>
+                                    <li  id="navList">
+                                       <div>
+                                        <i class="fa fa-qrcode"></i>
+                                        <a href="{% url 'AttendeeListView' %}">Qr Code</a>
+                                       </div>
+                                    </li>
+                                </ul>
                             </li>
+                            <script>
+                                document.getElementById('teywi').addEventListener('click', () => {
+                                    
+                                    if(document.getElementById('yurowwe').style.display == "block"){
+                                        document.getElementById('yurowwe').style.display = "none";
+                                    }else{
+                                        document.getElementById('yurowwe').style.display = "block";
+                                    }
+                                })
+                            </script>
                         {% endif %}
                         <li id="navList">
                             <div>

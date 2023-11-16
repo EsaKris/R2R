@@ -28,6 +28,7 @@ handler400 = 'homepage.views.custom_bad_request_view'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('homepage.urls')),
+    path('attendance/', include('attendance.urls')),
     path('logout/', LogoutView.as_view(), name="logout"),
     path('login/', LoginView.as_view(template_name="auth/login.html"), name="login" )
 

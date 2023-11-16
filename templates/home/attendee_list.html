@@ -38,58 +38,109 @@
     }
 </style>
 <div class="container mt-3">
-    <h3>List of Registered Attendee</h3>
-    <form action="{% url 'search' %}" id="myForm" method="post">
-        <div class="filter">
-            <h4>Filter</h4>
-            <div class="d-flex">
-                {{form |crispy}}
-        </div>
-        </div>
-    {% csrf_token %}
-        <div class="d-flex">
-            <input class="form-control" type="text" name="search" placeholder="Search....">
-            <button type="submit" class="btn mt-0">Search</button>
-        </div>
-    </form>
-    <br>
     <div class="idCard">
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Full Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Gender</th>
-                    <th>Local Assembly</th>
-                    <th>Nationality</th>
-                    <th>State</th>
-                    <th>LGA</th>
-                    <th>Pastor</th>
-                    <th>Camp</th>
-                    <th>Date</th>
-                </tr>
-            </thead>
-            <tbody>
+        <div>
+            <style>
+                .pastor .card{
+                    background: white !important;
+                    color: #000 !important;
+                }
+                .pastor .card > div{
+                    color: #000;
+                    border: 1px black solid !important;
+                }
+                .cardlist, .cardlist > div{
+                    width: 100%;
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 2rem;
+                }
+                .card{
+                    background: #000;
+                    padding: 1rem;
+                    max-width: 400px;
+                    width: 100%;
+                }
+                .card > div > div {
+                    padding: 1rem;
+                }
+                .card > div{
+                    display: block;
+                    margin: 1rem;
+                    border: 1px white solid !important;
+                    border-radius: 20px;
+                    color: white;
+                    align-items: center;
+                    text-align: center;
+                    height: 100%;
+                } 
+                .card > div > div:first-child > img{
+                    margin: auto;
+                    width: 60px;
+                }
+                .card > div > div:nth-child(3) {
+                    background: #6c4007;
+                    min-height: 75px;
+                    color: white;
+                }
+                .attendee .card > div > div:nth-child(3) {
+                    background: #000;
+                    min-height: 75px;
+                    color: white;
+                }
+                .attendee .card{
+                    background: #6c4007 !important;
+                    color: #000 !important;
+                }            
+            </style>
+
+            <div class="cardlist">
                 {% for attendee in Attendee %}
-                <tr>
-                    <td>{{forloop.counter}}</td>
-                    <td>{{attendee.Full_Name | title}}</td>
-                    <td>{{attendee.Email| title}}</td>
-                    <td>{{attendee.Phone| title}}</td>
-                    <td>{{attendee.Gender| title}}</td>
-                    <td>{{attendee.Local_Assembly|title}}</td>
-                    <td>{{attendee.Nationality| title}}</td>
-                    <td>{{attendee.State_of_Residence| title}}</td>
-                    <td>{{attendee.Local_Government_Area| title}}</td>
-                    <td>{{attendee.Are_you_a_pastor| title}}</td>
-                    <td>{{attendee.will_you_be_camping| title}}</td>
-                    <td>{{attendee.created|date:"d/ M/ Y"}}</td>
-                </tr>
+                <div class="{% if attendee.Are_you_a_pastor %}pastor {% elif attendee.volunteers.Volunteer == False %}attendee{% endif %}">
+                    <div class="card front">
+                        <div>
+                            <div>
+                                <img src="{% static 'img/logo.png' %}" alt="">
+                                <h5>Again and Afresh</h5>
+                                <h6><i>The Gathering Of Belivers</i></h6>
+                            </div>
+                            <div>
+                                <img src="{% static 'img/r2r 2.png' %}" alt="">
+                            </div>
+                            <div>
+                                <h2>{{ attendee.Full_Name | title }}</h2>
+                            </div>
+                            <div>
+                                <h4><i>{% if attendee.volunteers.Volunteer %}
+                                    VOLUNTEER
+                                    {% elif attendee.Are_you_a_pastor %}
+                                    PASTOR
+                                    {% else %}
+                                    PARTICIPANT
+                                {% endif %}</i></h4>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="card back">
+                        <div>
+                            <div>
+                                <img src="{% static 'img/logo.png' %}" alt="">
+                                <h5>Again and Afresh</h5>
+                                <h6><i>The Gathering Of Belivers</i></h6>
+                            </div>
+                            <div>
+                                <div >
+                                    <img style="width: 170px;" src="{{attendee.qr_code}}" alt="">
+                                </div>
+                            </div>
+                            <div><h2>{{attendee.id}}</h2></div>
+                            <div><h4>againandafresh.org</h4></div>
+                        </div>
+                    </div>
+                </div>
                 {% endfor %}
-            </tbody>
-        </table>
+            </div>
+    </div>
     </div>
 </div>
 

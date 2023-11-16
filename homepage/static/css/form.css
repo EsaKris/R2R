@@ -12,7 +12,7 @@ input[type=checkbox]{
     margin: 10px;
 }
 #myForm{
-    background-color: rgba(218, 165, 32, 0.645);
+    background-color: #daa520a4;
     padding: 1rem;
     max-width: 500px;
     color:white;
