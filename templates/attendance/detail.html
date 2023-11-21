@@ -10,6 +10,9 @@
   body {
     overflow: hidden;
   }
+  td{
+    padding: 10px !important;
+  }
   #task_tab {
     width: 55%;
   }
@@ -107,7 +110,7 @@
           <td style="text-align: left; margin-left: 10px">All</td>
           <td>{{attendance_list.all.count}}</td>
           <td class="phone">
-            <a class="btn btn-outline" onclick=""
+            <a class="btn btn-outline" href="{% url 'generate_word_doc' attendance.id %}"
               ><i class="fa fa-download"></i
             ></a>
           </td>
@@ -122,7 +125,7 @@
           <td style="text-align: left; margin-left: 10px">Pastors</td>
           <td>{{attendance_list.Pastors.count}}</td>
           <td class="phone">
-            <a class="btn btn-outline" onclick=""
+            <a class="btn btn-outline" href="{% url 'generate_word_doc' attendance.id %}"
               ><i class="fa fa-download"></i
             ></a>
           </td>
@@ -137,7 +140,7 @@
           <td style="text-align: left; margin-left: 10px">Workers</td>
           <td>{{attendance_list.Workers.count}}</td>
           <td class="phone">
-            <a class="btn btn-outline" onclick=""
+            <a class="btn btn-outline" href="{% url 'generate_word_doc' attendance.id %}"
               ><i class="fa fa-download"></i
             ></a>
           </td>
@@ -152,7 +155,7 @@
           <td style="text-align: left; margin-left: 10px">Members</td>
           <td>{{attendance_list.Members.count}}</td>
           <td class="phone">
-            <a class="btn btn-outline" onclick=""
+            <a class="btn btn-outline" href="{% url 'generate_word_doc' attendance.id %}"
               ><i class="fa fa-download"></i
             ></a>
           </td>
@@ -162,21 +165,7 @@
             ></a>
           </td>
         </tr>
-        <tr>
-          <th scope="row">7</th>
-          <td style="text-align: left; margin-left: 10px">First Timers</td>
-          <td>{{attendance_list.FirstTimers.count}}</td>
-          <td class="phone">
-            <a class="btn btn-outline" onclick=""
-              ><i class="fa fa-download"></i
-            ></a>
-          </td>
-          <td>
-            <a class="btn btn-outline" onclick="FirstTimerslist()"
-              ><i class="fa fa-eye"></i
-            ></a>
-          </td>
-        </tr>
+       
       </tbody>
     </table>
   </section>
@@ -269,7 +258,7 @@
   }
 
   function openscanner() {
-    if (task_tab.style.width == 0 || task_tab.style.width == "100%") {
+    if (window.screen.height <= "960px") {
       iconopenmessage();
     }
   }
@@ -318,7 +307,8 @@
   }
   
   function alluserlist() {
-    if (task_tab.style.width == 0 || task_tab.style.width == "100%") {
+    var x =  window.matchMedia("(max-width: 960px)")
+    if (x.matches) {
       iconopenmessage();
     }
     sideHeader.innerHTML = "All User Attendance List";
@@ -329,9 +319,9 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Full Name<
-                          /th>
-                        <th>Department/Phone</th>
+                        <th>Full Name</th>
+                        <th>Phone</th>
+                        <th>Gender</th>
                         <th>Time</th>
                     </tr>
                 </thead>
@@ -339,8 +329,9 @@
                     {% for item in attendance_list.all.all %}
                     <tr>
                         <td>{{forloop.counter}}</td>
-                        <td>{{item.attendee.last_name | title}} {{item.attendee.first_name | title}}</td>
-                        <td>{% if item.attendee.primarywork %}{{item.attendee.primarywork.worker.department}} - {{item.attendee.primarywork.worker.unit}} unit{% else %}{{item.attendee.phone}}{% endif %}</td>
+                        <td>{{item.attendee.Full_Name | title}}</td>
+                        <td>{{item.attendee.Phone}}</td>
+                        <td>{{item.attendee.Gender}}</td>
                         <td>{{item.time_in.time}}</td>
                     </tr>
                     {% endfor %}    
@@ -348,144 +339,64 @@
             </table>`;
   }
   function Pastorslist() {
-    if (task_tab.style.width == 0 || task_tab.style.width == "100%") {
+    var x =  window.matchMedia("(max-width: 960px)")
+    if (x.matches) {
       iconopenmessage();
     }
     sideHeader.innerHTML = "Pastors User Attendance List";
     comment_box.innerHTML = `
         <button class="btn" id="exportButton_PastorsAttendanceTable">Export to Excel</button>
 <br>        <br>    
-        <table id="PastorsAttendanceTable">
+<table id="AllAttendanceTable">
                 <thead>
                     <tr>
                         <th>#</th>
                         <th>Full Name</th>
-                        <th>Department/Phone</th>
+                        <th>Phone</th>
+                        <th>Gender</th>
                         <th>Time</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for item in attendance_list.Pastors.list %}
+                    {% for item in attendance_list.Pastors.all %}
                     <tr>
                         <td>{{forloop.counter}}</td>
-                        <td>{{item.attendee.last_name | title}} {{item.attendee.first_name | title}}</td>
-                        <td>{% if item.attendee.primarywork %}{{item.attendee.primarywork.worker.department}} - {{item.attendee.primarywork.worker.unit}} unit{% else %}{{item.attendee.phone}}{% endif %}</td>
+                        <td>{{item.attendee.Full_Name | title}}</td>
+                        <td>{{item.attendee.Phone}}</td>
+                        <td>{{item.attendee.Gender}}</td>
                         <td>{{item.time_in.time}}</td>
                     </tr>
                     {% endfor %}    
                 <tbody>
             </table>`;
   }
-  function Hodslist() {
-    if (task_tab.style.width == 0 || task_tab.style.width == "100%") {
-      iconopenmessage();
-    }
-    sideHeader.innerHTML = "Hods User Attendance List";
-    comment_box.innerHTML = `
-        <button class="btn" id="exportButton_HodsAttendanceTable">Export to Excel</button>
-<br>        <br>    
-        <table id="HodsAttendanceTable">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Full Name</th>
-                        <th>Department/Phone</th>
-                        <th>Time</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for item in attendance_list.Hods.list %}
-                    <tr>
-                        <td>{{forloop.counter}}</td>
-                        <td>{{item.attendee.last_name | title}} {{item.attendee.first_name | title}}</td>
-                        <td>{% if item.attendee.primarywork %}{{item.attendee.primarywork.worker.department}} - {{item.attendee.primarywork.worker.unit}} unit{% else %}{{item.attendee.phone}}{% endif %}</td>
-                        <td>{{item.time_in.time}}</td>
-                    </tr>
-                    {% endfor %}    
-                <tbody>
-            </table>`;
-  }
-  function Houslist() {
-    if (task_tab.style.width == 0 || task_tab.style.width == "100%") {
-      iconopenmessage();
-    }
-    sideHeader.innerHTML = "Hous User Attendance List";
-    comment_box.innerHTML = `
-        <button class="btn" id="exportButton_HousAttendanceTable">Export to Excel</button>
-<br>        <br>    
-        <table id="HousAttendanceTable">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Full Name</th>
-                        <th>Department/Phone</th>
-                        <th>Time</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for item in attendance_list.Hous.list %}
-                    <tr>
-                        <td>{{forloop.counter}}</td>
-                        <td>{{item.attendee.last_name | title}} {{item.attendee.first_name | title}}</td>
-                        <td>{% if item.attendee.primarywork %}{{item.attendee.primarywork.worker.department}} - {{item.attendee.primarywork.worker.unit}} unit{% else %}{{item.attendee.phone}}{% endif %}</td>
-                        <td>{{item.time_in.time}}</td>
-                    </tr>
-                    {% endfor %}    
-                <tbody>
-            </table>`;
-  }
+  
   function Workerslist() {
-    if (task_tab.style.width == 0 || task_tab.style.width == "100%") {
+    var x =  window.matchMedia("(max-width: 960px)")
+    if (x.matches) {
       iconopenmessage();
     }
     sideHeader.innerHTML = "Workers User Attendance List";
     comment_box.innerHTML = `
         <button class="btn" id="exportButton_WorkersAttendanceTable">Export to Excel</button>
 <br>        <br>    
-        <table id="WorkersAttendanceTable">
+<table id="AllAttendanceTable">
                 <thead>
                     <tr>
                         <th>#</th>
                         <th>Full Name</th>
-                        <th>Department/Phone</th>
+                        <th>Phone</th>
+                        <th>Gender</th>
                         <th>Time</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for item in attendance_list.Workers.list %}
+                    {% for item in attendance_list.Workers.all %}
                     <tr>
                         <td>{{forloop.counter}}</td>
-                        <td>{{item.attendee.last_name | title}} {{item.attendee.first_name | title}}</td>
-                        <td>{% if item.attendee.primarywork %}{{item.attendee.primarywork.worker.department}} - {{item.attendee.primarywork.worker.unit}} unit{% else %}{{item.attendee.phone}}{% endif %}</td>
-                        <td>{{item.time_in.time}}</td>
-                    </tr>
-                    {% endfor %}    
-                <tbody>
-            </table>`;
-  }
-  function Workerslist() {
-    if (task_tab.style.width == 0 || task_tab.style.width == "100%") {
-      iconopenmessage();
-    }
-    sideHeader.innerHTML = "Workers User Attendance List";
-    comment_box.innerHTML = `
-        <button class="btn" id="exportButton_WorkersAttendanceTable">Export to Excel</button>
-<br>        <br>    
-        <table id="WorkersAttendanceTable">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Full Name</th>
-                        <th>Department/Phone</th>
-                        <th>Time</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for item in attendance_list.Workers.list %}
-                    <tr>
-                        <td>{{forloop.counter}}</td>
-                        <td>{{item.attendee.last_name | title}} {{item.attendee.first_name | title}}</td>
-                        <td>{% if item.attendee.primarywork %}{{item.attendee.primarywork.worker.department}} - {{item.attendee.primarywork.worker.unit}} unit{% else %}No Primary Department{% endif %}</td>
+                        <td>{{item.attendee.Full_Name | title}}</td>
+                        <td>{{item.attendee.Phone}}</td>
+                        <td>{{item.attendee.Gender}}</td>
                         <td>{{item.time_in.time}}</td>
                     </tr>
                     {% endfor %}    
@@ -493,57 +404,31 @@
             </table>`;
   }
   function Memberslist() {
-    if (task_tab.style.width == 0 || task_tab.style.width == "100%") {
+    var x =  window.matchMedia("(max-width: 960px)")
+    if (x.matches) {
       iconopenmessage();
     }
     sideHeader.innerHTML = "Members User Attendance List";
     comment_box.innerHTML = `
         <button class="btn" id="exportButton_MembersAttendanceTable">Export to Excel</button>
 <br>        <br>    
-        <table id="MembersAttendanceTable">
+<table id="AllAttendanceTable">
                 <thead>
                     <tr>
                         <th>#</th>
                         <th>Full Name</th>
-                        <th>Department/Phone</th>
+                        <th>Phone</th>
+                        <th>Gender</th>
                         <th>Time</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for item in attendance_list.Members.list %}
+                    {% for item in attendance_list.Members.all %}
                     <tr>
                         <td>{{forloop.counter}}</td>
-                        <td>{{item.attendee.last_name | title}} {{item.attendee.first_name | title}}</td>
-                        <td>{% if item.attendee.primarywork %}{{item.attendee.primarywork.worker.department}} - {{item.attendee.primarywork.worker.unit}} unit{% else %}{{item.attendee.phone}}{% endif %}</td>
-                        <td>{{item.time_in.time}}</td>
-                    </tr>
-                    {% endfor %}    
-                <tbody>
-            </table>`;
-  }
-  function FirstTimerslist() {
-    if (task_tab.style.width == 0 || task_tab.style.width == "100%") {
-      iconopenmessage();
-    }
-    sideHeader.innerHTML = "First Timers User Attendance List";
-    comment_box.innerHTML = `
-        <button class="btn" id="exportButton_FirstAttendanceTable">Export to Excel</button>
-<br>        <br>    
-        <table id="FirstAttendanceTable">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Full Name</th>
-                        <th>Department/Phone</th>
-                        <th>Time</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for item in attendance_list.FirstTimers.list %}
-                    <tr>
-                        <td>{{forloop.counter}}</td>
-                        <td>{{item.attendee.last_name | title}} {{item.attendee.first_name | title}}</td>
-                        <td>{% if item.attendee.primarywork %}{{item.attendee.primarywork.worker.department}} - {{item.attendee.primarywork.worker.unit}} unit{% else %}{{item.attendee.phone}}{% endif %}</td>
+                        <td>{{item.attendee.Full_Name | title}}</td>
+                        <td>{{item.attendee.Phone}}</td>
+                        <td>{{item.attendee.Gender}}</td>
                         <td>{{item.time_in.time}}</td>
                     </tr>
                     {% endfor %}    
