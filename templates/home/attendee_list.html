@@ -36,6 +36,44 @@
     div.filter > div > div{
         margin-bottom: 0 !important;
     }
+    @media print {
+       
+        .idCard {
+        width: 100%;
+        overflow-x: scroll;
+        }
+        nav{
+            display: none;
+        }
+
+        .church {
+            background-color: black;
+            color: white;
+            padding: 1rem;
+        }
+
+        table {
+            width: max-content;
+        }
+
+        th {
+            padding: 1rem 0.5rem;
+        }
+
+        td {
+            padding: 0.5rem;
+        }
+        input{
+            width: max-content !important;
+        }
+        .filter > div{
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        div.filter > div > div{
+            margin-bottom: 0 !important;
+        }
+    }
 </style>
 <div class="container mt-3">
     <div class="idCard">
@@ -100,7 +138,7 @@
                 }  
                           
             </style>
-
+            <a href="#" onclick="window.print()" class="btn btn-warning text-center text-white m-3 mx-auto">Print cards</a>
             <div class="cardlist">
                 {% for attendee in Attendee %}
                 <div class="{% if attendee.Are_you_a_pastor %}pastor {% elif attendee.volunteers.Volunteer == False %}attendee{% endif %}">

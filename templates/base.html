@@ -32,7 +32,23 @@
     <meta name='og:description' content='R2R is a non-denominational 3-day conference hosted annually by Again and Afresh Church, Makurdi. It is a time dedicated to the worship of Christ by faithfully teaching His doctrine and having fellowship with His Spirit.'>
     <title>Again And Afresh The Gathering of Believers</title>
     <link rel="icon" href="{% static '/img/logo.ico' %}" />
-    
+    <!-- Meta Pixel Code -->
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '450990217177052');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=450990217177052&ev=PageView&noscript=1"
+        /></noscript>
+    <!-- End Meta Pixel Code -->
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link href='https://fonts.googleapis.com/css?family=Sora' rel='stylesheet'>
@@ -165,14 +181,15 @@
             </div>
         </div>
         </nav>
-      {% if messages %}
-        <ul class="list-control">
-        {% for message in messages %}
-            <li class="alert alert-success">{{message}}</li>
-        {% endfor %}
-        </ul>
-    {% endif %}
+     
         <main style="min-height:85vh;padding-top: 10vh;">
+            {% if messages %}
+            <ul class="list-control">
+            {% for message in messages %}
+                <li class="alert alert-success">{{message}}</li>
+            {% endfor %}
+            </ul>
+            {% endif %}
             {% block main %}
             {% endblock main %}
         </main>
