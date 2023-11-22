@@ -24,7 +24,7 @@ class Attendees(models.Model):
     Are_you_a_pastor = models.BooleanField(default=False, verbose_name="Are you a pastor?")
     will_you_be_camping = models.BooleanField(default=False, verbose_name="will you be camping with us?")
 
-    created = models.DateTimeField(default = timezone.now)    
+    created = models.DateTimeField(auto_now_add=True)    
 
     def qr_code(self):
         qr_code = make(self.id)
