@@ -1,0 +1,191 @@
+.idCard {
+    width: 100%;
+    overflow-x: scroll;
+}
+
+.church {
+    background-color: black;
+    color: white;
+    padding: 1rem;
+}
+
+table {
+    width: max-content;
+}
+
+th {
+    padding: 1rem 0.5rem;
+}
+
+td {
+    padding: 0.5rem;
+}
+input{
+    width: max-content !important;
+}
+.filter > div{
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+.cardlist{
+    display: grid;
+    grid-template-columns: 49% 49%;
+    grid-gap: 1%;
+}
+div.filter > div > div{
+    margin-bottom: 0 !important;
+}
+@media print {
+   
+    .idCard {
+    width: 100%;
+    overflow-x: scroll;
+    }
+    nav{
+        display: none;
+    }
+
+    .church {
+        background-color: black;
+        color: white;
+        padding: 1rem;
+    }
+
+    table {
+        width: max-content;
+    }
+
+    th {
+        padding: 1rem 0.5rem;
+    }
+
+    td {
+        padding: 0.5rem;
+    }
+    input{
+        width: max-content !important;
+    }
+    .filter > div{
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    div.filter > div > div{
+        margin-bottom: 0 !important;
+    }
+}
+.card .header h6{
+    text-transform: uppercase;
+    font-size: 12px !important;
+}
+.card div:first-child p{
+    font-size: 10px;
+}
+.card div:first-child h6{
+    width: fit-content;
+    margin: auto;
+    padding:0.5 1.5rem;
+}
+
+h6.position{
+    color: #000;
+    padding: 0.5rem;
+    border-radius: 10px;
+    background-color: #cbeaf0;
+}
+
+.card{
+    background-image: url(../img/cards/bg.png);
+    background-size: cover;
+    padding: 0.5rem;
+    max-width: 270px;
+    width: 100%;
+    
+}
+.pastor .card{
+    background-color:#001417 ;
+    background-size: cover;
+    color: white !important;
+}
+.pastor .card > div{
+    color: #fff;
+    border: 1px white solid !important;
+}
+
+ .cardlist > div{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+.card > div > div {
+    padding: 0.5rem;
+}
+.card > div{
+    display: block;
+    padding:1rem;
+    border: 1px white solid !important;
+    border-radius: 20px;
+    color: white;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+} 
+.card > div > div:first-child > img {
+    margin: auto;
+    width: 40px;
+    
+}
+.card >div > div:nth-child(2) {
+    margin: auto;
+    min-width: 100%;
+}
+
+.card .box > h4 > div   {
+    min-width:70%;
+    min-height: 40%;
+    border-radius: 10px;
+    background-color: #fff;
+    margin: auto;
+    padding: 10px;
+    display: flex;
+}
+.card .box > h4 > div > div  {
+    width: 100%;
+    min-height:80%;
+    border-radius: 10px;
+    background-color: #cbeaf0;
+    margin: auto;
+    padding: 15px;
+    display: flex;
+}
+
+.attendee .card .box > h4 > div > div > div {
+    background-color: #100600 ;
+}
+
+.volunteer .card .box > h4 > div > div > div {
+    background-color: #282203 ;
+}
+.pastor .card .box > h4 > div > div > div {
+    background-color: #488c9a;
+}
+.card .box > h4 > div > div > div {
+    padding: 15px;
+    width: 100%;
+    min-height:80%;
+    color: white;
+    border-radius: 10px;
+    margin: auto;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    
+}
+.attendee .card{
+    background-color: #100600  !important;
+    color: #000 !important;
+}  
+.volunteer .card{
+    background-color: #282203   !important;
+}
