@@ -1,5 +1,5 @@
 from django import forms
-from .models import Attendees, Volunteers, prayerRequest
+from .models import Attendees, Volunteers, prayerRequest, Specialcard
 
 class AttendeeForm(forms.ModelForm):
     class Meta:
@@ -16,3 +16,8 @@ class RequestsForm(forms.ModelForm):
     class Meta:
         model = prayerRequest
         fields =  ('Full_Name','Request')
+
+class SpecialCardForm(forms.ModelForm):
+    class Meta:
+        model = Specialcard
+        fields = ('name','pastor','level',)

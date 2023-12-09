@@ -111,11 +111,17 @@ h6.position{
     border: 1px white solid !important;
 }
 
+.cardlist{
+    padding: 1rem;
+}
  .cardlist > div{
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    gap: 2rem;
+    justify-content: space-around;
+    border: 1px #000 solid;
+    padding: 0.5rem;
+
 }
 .card > div > div {
     padding: 0.5rem;
@@ -188,4 +194,8 @@ h6.position{
 }  
 .volunteer .card{
     background-color: #282203   !important;
+}
+
+form{
+    max-width: 500px;
 }

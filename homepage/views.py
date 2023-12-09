@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import AttendeeForm, VolunteersForm, RequestsForm
+from .forms import AttendeeForm, VolunteersForm, RequestsForm, SpecialCardForm
 from .models import Attendees
 from django.contrib import messages
 
@@ -59,10 +59,17 @@ def AttendeeListView(request):
                 attendee.id = f"00{attendee.id}"
             elif len(str(attendee.id)) == 1:
                 attendee.id = f"000{attendee.id}"
-            
+        if request.method == "POST":
+            form = SpecialCardForm(request.POST)
+            if form.is_valid():
+                data = form.save()
+                messages.success(request, f'You have successfully created a specialcard with and id of: {data.id}')
+                return redirect('AttendeeListView')
+        else:
+            form = SpecialCardForm()
     else:
         return redirect('/')
-    return render(request, "home/attendee_list.html", {'Attendee':Attendee, 'form':AttendeeForm()})    
+    return render(request, "home/attendee_list.html", {'Attendee':Attendee, 'form':form})    
 
 from django.db.models import Q
 from django.http import JsonResponse

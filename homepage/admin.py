@@ -1,7 +1,7 @@
 from import_export.admin import ImportExportModelAdmin
 from import_export.admin import ImportExportMixin
 from django.contrib import admin
-from .models import Attendees, Volunteers, prayerRequest
+from .models import Attendees, Volunteers, prayerRequest, Specialcard
 
 
 class RegisterAdmin(ImportExportMixin, admin.ModelAdmin):
@@ -23,3 +23,5 @@ class RequestAdmin(ImportExportMixin, admin.ModelAdmin):
     list_filter = ('Full_Name', 'Request', 'created')
     search_fields = ('Full_Name', 'Request', 'created')
 admin.site.register(prayerRequest, RequestAdmin)
+
+admin.site.register(Specialcard)

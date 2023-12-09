@@ -59,3 +59,18 @@ class prayerRequest(models.Model):
     
     def __str__(self):
         return f'{self.Full_Name}'
+    
+levels = (
+    ('1','Level 1'),
+    ('2','Level 2'),
+    ('3','Level 3'),
+)
+class Specialcard(models.Model):
+    name = models.CharField(max_length=250)
+    pastor = models.BooleanField(default=False)
+    level = models.CharField(max_length=8, choices=levels)
+    created = models.DateTimeField(default = timezone.now())
+    
+    def __str__(self):
+        return f'{self.name}'
+    

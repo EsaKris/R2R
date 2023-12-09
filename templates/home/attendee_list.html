@@ -6,9 +6,17 @@
 <div class="mt-3">
     <div class="idCard">
         <div>
-         
-            <a href="#" onclick="window.print()" class="btn btn-warning text-center text-white m-3 mx-auto">Print cards</a>
+            <div>
+                <a href="#" onclick="window.print()" class="btn btn-warning text-center text-white m-3 mx-auto">Print cards</a>
+                <form class="form-control" method="post">
+                    {{ form | crispy }}
+                    {% csrf_token %}
+                    <input type="submit" class="btn btn-outline text-white text-center btn-warning" value="Add special card">
+                </form>
+            </div>
+            
             <div class="cardlist">
+                
                 {% for attendee in Attendee %}
                 <div class="{% if attendee.Are_you_a_pastor %}pastor {% elif attendee.volunteers.Volunteer == False %}attendee{% else %}volunteer{% endif %}">
                     <div class="card front">
@@ -33,7 +41,7 @@
                                 </h4>
                             </div>
                             <div>
-                                <h6 class="position">{% if attendee.volunteers.Volunteer %}
+                                <h6 class="position">{% if attendee.volunteers.Volunteer and attendee.Are_you_a_pastor == False %}
                                     VOLUNTEER
                                     {% elif attendee.Are_you_a_pastor %}
                                     PASTOR
