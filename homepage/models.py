@@ -68,9 +68,9 @@ levels = (
 class Specialcard(models.Model):
     uid = models.UUIDField(default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=250)
-    pastor = models.BooleanField(default=False)
     level = models.CharField(max_length=8, choices=levels)
-    position = models.CharField(max_length=255)
+    title = models.CharField(max_length=255)
+    church = models.CharField(max_length=255)
     created = models.DateTimeField(default = timezone.now())
     
     def qr_code(self):

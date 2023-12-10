@@ -20,7 +20,7 @@ class RequestsForm(forms.ModelForm):
 class SpecialCardForm(forms.ModelForm):
     class Meta:
         model = Specialcard
-        fields = ('name','level','pastor',)
+        fields = ('name','level','title','church')
 
 class InhouseForm(forms.ModelForm):
     class Meta:

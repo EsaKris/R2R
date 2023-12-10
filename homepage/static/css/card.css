@@ -136,7 +136,7 @@ div.filter > div > div{
 }
 
 .participant .card{
-    background-color: #000 ;
+    background-color: rgba(30, 30, 30, 1) ;
 }
 .participant .card .header{
     color: #fff ;
@@ -180,7 +180,7 @@ h6.position{
     
 }
 .pastor .card{
-    background-color:#001417 ;
+    background-color:rgba(30, 30, 30, 1) ;
     background-size: cover;
     color: white !important;
 }
@@ -264,4 +264,52 @@ h6.position{
 
 form{
     max-width: 500px;
+}
+.overlap-group1{
+    background: rgba(30, 30, 30, 1);
+    background-image: url(../img/cards/bg.png);
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    color: #fff;
+    padding: 5% 3%;
+    width: 270px;
+    height: 429.604px;
+    overflow-x: hidden;
+}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap');
+.group-1.group{
+    background-color: #a0e8b9;
+    position: absolute;
+    transform: rotate(331deg);
+width: 270px;
+padding: 1rem;
+text-align: left;
+    top: 50%;
+    right: -13%;
+    color: #000;
+    font-weight: 900;
+    color: #1E1E1E;
+    text-align: center;
+    font-family: 'Poppins' !important;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    letter-spacing: -0.64px;
+}
+.autograghy{
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    text-align: right;
+}
+.level-1-front .group-1.group{
+    background: #D9D9D9;
+}
+.level-2-front .group-1.group{
+    background: #8BC2DF;
+}
+.level-3-front .group-1.group{
+    background: #a0e8b9;
 }
