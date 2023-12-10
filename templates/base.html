@@ -191,6 +191,7 @@
         </nav>
      
         <main style="min-height:85vh;padding-top: 10vh;">
+            <div>
             {% if messages %}
             <ul class="list-control">
             {% for message in messages %}
@@ -200,6 +201,7 @@
             {% endif %}
             {% block main %}
             {% endblock main %}
+            </div>
         </main>
     <script src="{% static 'js/scripts.js' %}"></script>
     

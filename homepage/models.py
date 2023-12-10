@@ -27,7 +27,7 @@ class Attendees(models.Model):
     created = models.DateTimeField(auto_now_add=True)    
 
     def qr_code(self):
-        qr_code = make(self.id)
+        qr_code = make(self.uid)
 
         basename = str(self.Full_Name.replace(" ", "_")) + '_QR_CODE.png'
         qr_code.save('media/QR_CODE/{}'.format(basename))
@@ -66,11 +66,34 @@ levels = (
     ('3','Level 3'),
 )
 class Specialcard(models.Model):
+    uid = models.UUIDField(default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=250)
     pastor = models.BooleanField(default=False)
     level = models.CharField(max_length=8, choices=levels)
+    position = models.CharField(max_length=255)
     created = models.DateTimeField(default = timezone.now())
     
+    def qr_code(self):
+        qr_code = make(self.uid)
+        basename = str(self.name.replace(" ", "_")) + '_QR_CODE.png'
+        qr_code.save('media/QR_CODE/{}'.format(basename))
+        return '/media/QR_CODE/{}'.format(basename)
+
     def __str__(self):
-        return f'{self.name}'
+        return f'{self.name} -> ID:{self.id}'
+    
+    def save(self,force_insert=True,using='dataset'):
+        super().save(force_insert)
+
+    def save(self, *args, **kwargs):
+        self.qr_code()
+        return super().save(*args, **kwargs)
+    
+class InHouse(models.Model):
+    person = models.OneToOneField(Attendees, on_delete=models.CASCADE, related_name="inhouse")
+    department = models.CharField(max_length=255, verbose_name="Enter your department name")
+    brethren = models.BooleanField(default=False, verbose_name="Are you an inhouse brethen?")
+
+    def __str__(self):
+        return f'{self.person}'
     

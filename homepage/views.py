@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .forms import AttendeeForm, VolunteersForm, RequestsForm, SpecialCardForm
-from .models import Attendees
+from .forms import AttendeeForm, VolunteersForm, RequestsForm, SpecialCardForm, InhouseForm
+from .models import Attendees, Specialcard
 from django.contrib import messages
 
 def register(request):
@@ -14,7 +14,6 @@ def register(request):
     return render(request, 'home/register.html', {'form':form})
 
 def volunteer(request, pk):
-    
     Attendee = Attendees.objects.filter(pk=pk)
     if Attendee:
         Attendee = Attendees.objects.get(pk=pk)
@@ -32,7 +31,6 @@ def volunteer(request, pk):
         return redirect('/')
     return render(request, "home/volunteer.html", {'form':form})
 
-
 def prayerRequest(request):
     if request.method == "POST":
         form = RequestsForm(request.POST)
@@ -49,8 +47,18 @@ def donate(request):
 
 def AttendeeListView(request):
     if request.user.is_staff:
+        specialcard = Specialcard.objects.all().order_by('-created')
         Attendee = Attendees.objects.all().order_by('-created')
         for attendee in Attendee:
+            if len(str(attendee.id)) == 4:
+                attendee.id
+            elif len(str(attendee.id)) == 3:
+                attendee.id = f"0{attendee.id}"
+            elif len(str(attendee.id)) == 2:
+                attendee.id = f"00{attendee.id}"
+            elif len(str(attendee.id)) == 1:
+                attendee.id = f"000{attendee.id}"
+        for attendee in specialcard:
             if len(str(attendee.id)) == 4:
                 attendee.id
             elif len(str(attendee.id)) == 3:
@@ -69,7 +77,7 @@ def AttendeeListView(request):
             form = SpecialCardForm()
     else:
         return redirect('/')
-    return render(request, "home/attendee_list.html", {'Attendee':Attendee, 'form':form})    
+    return render(request, "home/attendee_list.html", {'Attendee':Attendee, 'form':form, 'specialcard':specialcard})    
 
 from django.db.models import Q
 from django.http import JsonResponse
@@ -108,3 +116,13 @@ def custom_permission_denied_view(request, exception=None):
 
 def custom_bad_request_view(request, exception=None):
     return render(request, "errors/400.html", {})
+
+def inhouse(request):
+    if request.method == "POST":
+        form = InhouseForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    else:
+        form = InhouseForm()
+    return render(request, "home/inhouseform.html", {'form':form})

@@ -1,7 +1,7 @@
 from import_export.admin import ImportExportModelAdmin
 from import_export.admin import ImportExportMixin
 from django.contrib import admin
-from .models import Attendees, Volunteers, prayerRequest, Specialcard
+from .models import Attendees, Volunteers, prayerRequest, Specialcard, InHouse
 
 
 class RegisterAdmin(ImportExportMixin, admin.ModelAdmin):
@@ -25,3 +25,4 @@ class RequestAdmin(ImportExportMixin, admin.ModelAdmin):
 admin.site.register(prayerRequest, RequestAdmin)
 
 admin.site.register(Specialcard)
+admin.site.register(InHouse)

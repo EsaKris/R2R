@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import register, homepage, volunteer, AttendeeListView, prayerRequest, search_fields, donate
+from .views import register, homepage, volunteer, AttendeeListView, prayerRequest, search_fields, donate, inhouse
 
 
 urlpatterns = [
@@ -9,5 +9,6 @@ urlpatterns = [
     path("send_prayer_request", prayerRequest, name="prayerRequest"),
     path('volunteer/<int:pk>', volunteer, name="volunteer"),
     path('AttendeeListView/', AttendeeListView, name="AttendeeListView"),
-    path('search/', search_fields, name="search")
+    path('search/', search_fields, name="search"),
+    path('inhouse/', inhouse, name="inhouse")
 ]
