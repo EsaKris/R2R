@@ -123,7 +123,7 @@ header > div{
 }
 .CountDown{
     
-    min-height:30vh;
+    min-height:150px;
     display: flex;
     justify-content: space-between;
     align-content: center;
@@ -283,7 +283,6 @@ header > div{
     justify-content: space-between;
 }
 .location .text{
-    padding:2rem;
     align-self:center;
 }
 .text{
@@ -296,9 +295,6 @@ img{
 }
 .headSteward{
     padding: 3rem 0;
-}
-.headSteward > div{
-    padding:0 2rem;
 }
 .headSteward > div:first-child{
     max-width: 350px;
@@ -325,4 +321,37 @@ img{
     border-right:2px #9f6110 solid;
     padding: 1rem;
     margin: 1rem;
+}
+.youtube{
+    display: flex;
+    padding: 3rem 0;
+    align-items: center;
+    gap: 3rem;
+    min-height: 500px;
+}
+.youtube h2 {
+    font-weight: 900;
+    text-transform: uppercase;
+}
+@media screen and (max-width:960px) {
+    .CountContainer{
+        font-size: 0.7rem;
+        padding: 1rem !important;
+    }
+    .youtube{
+        flex-direction: column;
+    }
+    .prayer{
+        flex-direction: column;
+        gap: 2rem;
+        padding: 0;
+    }
+
+    .contacticons > div > div:first-child{
+        border-right:2px #9f6110 solid;
+        padding: 0;
+        margin: 0;
+        padding-right: 1rem;
+        margin-right: 1rem;
+    }
 }

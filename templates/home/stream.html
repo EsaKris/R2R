@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block main %}
+
+<script>
+    // Set the target date for the countdown
+    const targetDate = new Date("2023-12-20T00:00:00").getTime();
+  
+    function updateCountdown() {
+        const currentDate = new Date().getTime();
+        const timeRemaining = targetDate - currentDate;
+  
+        if (timeRemaining <= 0) {
+            document.getElementById("timing").innerHTML = "NOW LIVE";
+            return;
+        }
+  
+        const seconds = Math.floor((timeRemaining / 1000) % 60);
+        const minutes = Math.floor((timeRemaining / 1000 / 60) % 60);
+        const hours = Math.floor((timeRemaining / (1000 * 60 * 60)) % 24);
+        const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+        const months = Math.floor(days / 30); // Assuming 30 days per month
+  
+        document.getElementById("countdown").innerHTML = `
+        <div><h1>${months}</h1>Months</div>
+        <div><h1>${days % 30}</h1>Days</div>
+        <div><h1>${hours}</h1>Hours</div>
+        <div><h1>${minutes}</h1>minutes</div>
+        <div><h1>${seconds}</h1>Seconds</div>
+        `;
+    }
+  
+    // Update the countdown every second
+    setInterval(updateCountdown, 1000);
+  
+    // Initial call to set the correct time
+    updateCountdown();
+  </script>
+<div class="container">
+    
+<section class="CountContainer " style="margin: auto;padding:1rem;width: 100%;">
+    <div class="CountDown " style="padding:0;justify-content:space-between;width: 100%;">
+      <div>
+        <h5>R2R is</h5>
+        <h1 id="timing">Coming Soon</h1>
+        <p></p>
+      </div id="time">
+      <div><div class="d-flex" id="countdown">
+     
+      </div></div>
+    </div>
+  </section>
+  <br>
+<section class="stream">
+    <iframe style="width: 100%;height: 70vh;" src="https://www.youtube.com/embed/G2_esJ2qaxw?si=7uH4wHCZ6mJvvOhh&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</section>
+</div>
+{% endblock main %}

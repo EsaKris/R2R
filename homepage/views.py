@@ -126,3 +126,6 @@ def inhouse(request):
     else:
         form = InhouseForm()
     return render(request, "home/inhouseform.html", {'form':form})
+
+def onlinestream(request):
+    return render(request, "home/stream.html")

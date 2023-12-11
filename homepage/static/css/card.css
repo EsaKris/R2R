@@ -120,7 +120,6 @@ div.filter > div > div{
     color: #000;
 }
 
-
 .worker .card{
     background-color: #224e61 ;
 }
@@ -158,9 +157,13 @@ div.filter > div > div{
 }
 .volunteer .card .box > h4 > div > div {
     background-color: #cbeaf0;
+    color:black !important;
 }
 .volunteer h6.position, .volunteer .card_id{
     background-color: #a0e8b9;
+    color: #000;
+}
+.volunteer .card .box > h4 > div > div > div {
     color: #000;
 }
 
