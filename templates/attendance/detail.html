@@ -293,7 +293,7 @@
   async function success(result) {
     console.log(result);
 
-    fetch("/attendance/take-Attendance/{{attendance.uid}}/" + result)
+    fetch("/attendance/take-Attendance/{{attendance.id}}/" + result)
       .then((response) => response.json())
       .then((data) => {
         if (result.message) {
