@@ -59,7 +59,7 @@ from django.http import JsonResponse
 
 def takeAttendance(request, pk, uid):
     attendance = CreateAttendance.objects.get(pk=pk)
-    attendee = Attendees.objects.get(pk=uid)
+    attendee = Attendees.objects.get(uid=uid)
     attend, created = Attendance.objects.get_or_create(attendance=attendance, attendee=attendee)
     data = {
         'attendee':f'{attend.attendee}',
