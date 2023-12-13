@@ -256,11 +256,22 @@
     message_list_icon.style.display = "block";
     console.log(task_tab.style.width);
   }
-
+ 
   function openscanner() {
-    if (window.screen.height <= "960px") {
+    function handleMediaQueryChange(mediaQueryList) {
+      if (mediaQueryList.matches) {
+        // Apply styles for screens with a minimum width of 600px
       iconopenmessage();
+      }
     }
+    // Create a media query list
+    const mediaQueryList = window.matchMedia('(max-width: 960px)');
+
+    // Attach the handler function to the media query list
+    mediaQueryList.addListener(handleMediaQueryChange);
+
+    // Initial check of the media query status
+    handleMediaQueryChange(mediaQueryList);
   }
     sideHeader.innerHTML = "Scanner ";
     comment_box.innerHTML = ` <br>
