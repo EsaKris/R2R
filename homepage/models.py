@@ -44,7 +44,7 @@ class Attendees(models.Model):
         return super().save(*args, **kwargs)
 
 class Volunteers(models.Model):
-    Attendee = models.OneToOneField(Attendees, on_delete=models.CASCADE, related_name='volunteers')
+    Attendee = models.OneToOneField(Attendees, on_delete=models.CASCADE, related_name='volunteers',null=True,)
     Volunteer = models.BooleanField(default=False)
     created = models.DateTimeField(default = timezone.now())    
     
