@@ -31,9 +31,7 @@ def attendanceDetail(request, pk):
     for attendee in all:
         if attendee.attendee.Are_you_a_pastor:
             Pastors.append(attendee)
-        elif attendee.attendee.volunteers.Volunteer == True and attendee.attendee.Are_you_a_pastor == False:
-            Workers.append(attendee)
-        elif attendee.attendee.volunteers.Volunteer == False and attendee.attendee.Are_you_a_pastor == False:
+        else:
             Members.append(attendee)
     context =  {
              'attendance':attendance,
