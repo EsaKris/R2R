@@ -103,23 +103,36 @@ div.filter > div > div{
     color: #000;
 }
 
-.i-pastor .card{
+.participant .card{
     background-color: #cbeaf0 ;
 }
-.i-pastor .card .header, .i-pastor h6{
+.participant .card .header, .participant h6{
     color: #000;
 }
-.i-pastor .card .box > h4 > div > div >div{
+.participant .card .box > h4 > div > div >div{
     color: #fff;
 }
-.i-pastor .card .box > h4 > div > div {
+.participant .card .box > h4 > div > div {
     background-color: #224e61;
 }
-.i-pastor h6.position, .i-pastor .card_id{
-    background-color: #a0e8b9;
+.participant .card_id{
+    background-color: #224e61;
     color: #000;
 }
 
+.i-pastor .card{
+    background-color:rgba(30, 30, 30, 1) ;
+    background-size: cover;
+    color: white !important;
+}
+.i-pastor .card > div{
+    color: #fff;
+}
+
+.i-pastor .card_id{
+    background-color: #cbeaf0;
+    color: #000;
+}
 .worker .card{
     background-color: #224e61 ;
 }
@@ -128,23 +141,21 @@ div.filter > div > div{
 }
 .worker .card .box > h4 > div > div {
     background-color: #a0e8b9;
-}
-.worker h6.position, .worker .card_id{
-    background-color: #a0e8b9a0;
+}.worker .card_id{
+    background-color: #a0e8b9;
     color: #000;
 }
 
-.participant .card{
+.pastor .card{
     background-color: rgba(30, 30, 30, 1) ;
 }
-.participant .card .header{
+.pastor .card .header{
     color: #fff ;
 }
-.participant .card .box > h4 > div > div {
+.pastor .card .box > h4 > div > div {
     background-color: #224e61;
-}
-.participant h6.position, .participant .card_id{
-    background-color: #cbeaf0;
+}.pastor .card_id{
+    background-color: #224e61;
     color: #000;
 }
 
@@ -159,8 +170,8 @@ div.filter > div > div{
     background-color: #cbeaf0;
     color:black !important;
 }
-.volunteer h6.position, .volunteer .card_id{
-    background-color: #a0e8b9;
+.volunteer .card_id{
+    background-color: #cbeaf0;
     color: #000;
 }
 .volunteer .card .box > h4 > div > div > div {
@@ -168,10 +179,9 @@ div.filter > div > div{
 }
 
 h6.position{
-    color: #000;
+    color: #fff;
     padding: 0.5rem;
     border-radius: 10px;
-    background-color: #cbeaf0;
 }
 
 .card{
@@ -180,18 +190,7 @@ h6.position{
     padding: 0.5rem;
     max-width: 270px;
     width: 100%;
-    
 }
-.pastor .card{
-    background-color:rgba(30, 30, 30, 1) ;
-    background-size: cover;
-    color: white !important;
-}
-.pastor .card > div{
-    color: #fff;
-    border: 1px white solid !important;
-}
-
 .cardlist{
     padding: 1rem;
 }
@@ -203,13 +202,9 @@ h6.position{
     padding: 0.5rem;
     gap:1rem
 }
-.card > div > div {
-    padding: 0.5rem;
-}
 .card > div{
     display: block;
-    padding:1rem;
-    border: 1px white solid !important;
+    padding:1rem 0;
     border-radius: 20px;
     color: white;
     align-items: center;
@@ -222,26 +217,20 @@ h6.position{
     
 }
 .card >div > div:nth-child(2) {
-    margin:1.5rem auto;
     min-width: 100%;
 }
 
 .card .box > h4 > div   {
-    min-width:70%;
-    min-height: 40%;
-    border-radius: 10px;
-    background-color: #fff;
     margin: auto;
-    padding: 10px;
+    padding: 10px 0;
     display: flex;
 }
 .card .box > h4 > div > div  {
     width: 100%;
     min-height:80%;
-    border-radius: 10px;
     background-color: #cbeaf0;
     margin: auto;
-    padding: 15px;
+    padding: 10px;
     display: flex;
 }
 .card .qr > h4 > div > div{
@@ -268,6 +257,19 @@ h6.position{
 form{
     max-width: 500px;
 }
+.card{
+    position: relative;
+    height: 429.604px;
+}
+.card .simple{
+    height: 429.604px;
+    width: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 932;
+    
+}
 .overlap-group1{
     background: rgba(30, 30, 30, 1);
     background-image: url(../img/cards/bg.png);
@@ -282,7 +284,6 @@ form{
 }
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap');
 .group-1.group{
-    background-color: #a0e8b9;
     position: absolute;
     transform: rotate(331deg);
 width: 270px;
@@ -315,4 +316,8 @@ text-align: left;
 }
 .level-3-front .group-1.group{
     background: #a0e8b9;
+}
+
+h6.position {
+    background-color: none !important;
 }
