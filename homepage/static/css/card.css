@@ -36,7 +36,9 @@ div.filter > div > div{
     margin-bottom: 0 !important;
 }
 @media print {
-   
+    form{
+        display:none;
+    }
     .idCard {
     width: 100%;
     overflow-x: scroll;
