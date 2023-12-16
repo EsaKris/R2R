@@ -25,32 +25,11 @@ from django.contrib.auth.decorators import login_required
 def attendanceDetail(request, pk):
     attendance = CreateAttendance.objects.get(pk=pk)
     all = Attendance.objects.filter(attendance=attendance)
-    Pastors =[]
-    Workers=[]
-    Members =[]
-    for attendee in all:
-        if attendee.attendee.Are_you_a_pastor:
-            Pastors.append(attendee)
-        elif attendee.attendee.volunteers.Volunteer == True and attendee.attendee.Are_you_a_pastor == False:
-            Workers.append(attendee)
-        elif attendee.attendee.volunteers.Volunteer == False and attendee.attendee.Are_you_a_pastor == False:
-            Members.append(attendee)
+  
     context =  {
              'attendance':attendance,
              'attendance_list': {
                  'all': all,
-                 'Pastors':{
-                     'all':Pastors,
-                     'count':len(Pastors)
-                 },
-                 'Workers':{
-                     'all':Workers,
-                     'count':len(Workers)
-                 },
-                 'Members':{
-                     'all':Members,
-                     'count':len(Members)
-                 }
              }
           }
     return render(request, 'attendance/detail.html', context)
@@ -104,17 +83,8 @@ def generate_word_doc(request, pk):
     attendance = CreateAttendance.objects.get(pk=pk)
     lists = Attendance.objects.filter(attendance=attendance)
     All= []
-    Pastors = []
-    Workers  = []
-    Members  = []
     for attendee in lists:
         All.append(attendee)
-        if attendee.attendee.Are_you_a_pastor:
-            Pastors.append(attendee)
-        elif attendee.attendee.volunteers.Volunteer == True and attendee.attendee.Are_you_a_pastor == False:
-            Workers.append(attendee)
-        elif attendee.attendee.volunteers.Volunteer == False and attendee.attendee.Are_you_a_pastor == False:
-            Members.append(attendee)
     doc = Document()
 
 
@@ -157,9 +127,6 @@ def generate_word_doc(request, pk):
 
     summaryTableData = [
         ['1','All', str(len(check_male_gender(All))), str(len(check_female_gender(All))), str(len(All))],
-        ['2','Pastor', str(len(check_male_gender(Pastors))), str(len(check_female_gender(Pastors))), str(len(Pastors))],
-        ['3','Worker', str(len(check_male_gender(Workers))), str(len(check_female_gender(Workers))), str(len(Workers))],
-        ['4','Member', str(len(check_male_gender(Members))), str(len(check_female_gender(Members))), str(len(Members))],
     ]
 
     for i, row in enumerate(summaryTable.rows[1:], start=1):
@@ -168,110 +135,39 @@ def generate_word_doc(request, pk):
                 if j < len(summaryTableData[i-1]):  # Check if the index is within the range of summaryTableData[i-1]
                     cell.text = summaryTableData[i-1][j]
 
+    
     doc.add_paragraph('')
     doc.add_paragraph('')
     doc.add_paragraph('')
-    ds = len(Pastors) + 2
+    ds = len(All) + 2
 
-    add_title(doc, f"Pastors List", size=18, bold=True)
-    PastorsTable = doc.add_table(rows=ds, cols=5)
-    PastorsTable.style = 'Table Grid'
+    add_title(doc, f"Al Attendeesl", size=18, bold=True)
+    AllTable = doc.add_table(rows=ds, cols=4)
+    AllTable.style = 'Table Grid'
 
-    for row in PastorsTable.rows:
+    for row in AllTable.rows:
         for cell in row.cells:
             cell.width = Pt(100)
             cell.paragraphs[0].alignment = 1
             cell.vertical_alignment = WD_ALIGN_VERTICAL.CENTER
         row.cells[0].width = Pt(30)
 
-    PastorsTableHeader = PastorsTable.rows[0].cells
-    PastorsTableHeader[0].text = "S/N"
-    PastorsTableHeader[1].text = "Name"
-    PastorsTableHeader[2].text = "Phone"
-    PastorsTableHeader[3].text = "Gender"
-    PastorsTableHeader[4].text = "Time"
+    AllTableHeader = AllTable.rows[0].cells
+    AllTableHeader[0].text = "S/N"
+    AllTableHeader[1].text = "Name"
+    AllTableHeader[2].text = "Phone Number"
+    AllTableHeader[3].text = "Time"
 
-    PastorsTableData =[]
-    for index, member in enumerate(Pastors):
-        sn = index +1
-        PastorsTableData.append(
-            [str(sn), f'{member.attendee.Full_Name.title()}', str(member.attendee.Phone), str(member.attendee.Gender), str(member.time_in.time())]
+    AllTableData =[]
+    for index, member in enumerate(All):
+        AllTableData.append(
+            [str(index + 1), f'{member.attendee.Full_Name.title()}', str(member.attendee.Phone), str(member.time_in.time())]
         )
-       
-    for i, row in enumerate(PastorsTable.rows[1:], start=1):
-        if i - 1 < len(PastorsTableData):  # Check if the index is within the range of PastorsTableData
+    for i, row in enumerate(AllTable.rows[1:], start=1):
+        if i - 1 < len(AllTableData):  # Check if the index is within the range of AllTableData
             for j, cell in enumerate(row.cells):
-                if j < len(PastorsTableData[i-1]):  # Check if the index is within the range of PastorsTableData[i-1]
-                    cell.text = PastorsTableData[i-1][j]
-
-
-    doc.add_paragraph('')
-    doc.add_paragraph('')
-    doc.add_paragraph('')
-    ds = len(Workers) + 2
-
-    add_title(doc, f"Workers List", size=18, bold=True)
-    WorkersTable = doc.add_table(rows=ds, cols=5)
-    WorkersTable.style = 'Table Grid'
-
-    for row in WorkersTable.rows:
-        for cell in row.cells:
-            cell.width = Pt(100)
-            cell.paragraphs[0].alignment = 1
-            cell.vertical_alignment = WD_ALIGN_VERTICAL.CENTER
-        row.cells[0].width = Pt(30)
-
-    WorkersTableHeader = WorkersTable.rows[0].cells
-    WorkersTableHeader[0].text = "S/N"
-    WorkersTableHeader[1].text = "Name"
-    WorkersTableHeader[2].text = "Phone"
-    WorkersTableHeader[3].text = "Gender"
-    WorkersTableHeader[4].text = "Time"
-
-    WorkersTableData =[]
-    for index, member in enumerate(Workers):
-        sn = index +1
-        WorkersTableData.append(
-            [str(sn), f'{member.attendee.Full_Name.title()}', str(member.attendee.Phone), str(member.attendee.Gender), str(member.time_in.time())]
-        )
-       
-    for i, row in enumerate(WorkersTable.rows[1:], start=1):
-        if i - 1 < len(WorkersTableData):  # Check if the index is within the range of WorkersTableData
-            for j, cell in enumerate(row.cells):
-                if j < len(WorkersTableData[i-1]):  # Check if the index is within the range of WorkersTableData[i-1]
-                    cell.text = WorkersTableData[i-1][j]
-    doc.add_paragraph('')
-    doc.add_paragraph('')
-    doc.add_paragraph('')
-    ds = len(Members) + 2
-
-    add_title(doc, f"Non-workers/Members", size=18, bold=True)
-    MembersTable = doc.add_table(rows=ds, cols=4)
-    MembersTable.style = 'Table Grid'
-
-    for row in MembersTable.rows:
-        for cell in row.cells:
-            cell.width = Pt(100)
-            cell.paragraphs[0].alignment = 1
-            cell.vertical_alignment = WD_ALIGN_VERTICAL.CENTER
-        row.cells[0].width = Pt(30)
-
-    MembersTableHeader = MembersTable.rows[0].cells
-    MembersTableHeader[0].text = "S/N"
-    MembersTableHeader[1].text = "Name"
-    MembersTableHeader[2].text = "Phone Number"
-    MembersTableHeader[3].text = "Time"
-
-    MembersTableData =[]
-    for index, member in enumerate(Members):
-        MembersTableData.append(
-            [str(index + 1), f'{member.attendee.last_name.title()} {member.attendee.first_name.title()}', str(member.attendee.phone), str(member.time_in.time())]
-        )
-    for i, row in enumerate(MembersTable.rows[1:], start=1):
-        if i - 1 < len(MembersTableData):  # Check if the index is within the range of MembersTableData
-            for j, cell in enumerate(row.cells):
-                if j < len(MembersTableData[i-1]):  # Check if the index is within the range of MembersTableData[i-1]
-                    cell.text = MembersTableData[i-1][j]
+                if j < len(AllTableData[i-1]):  # Check if the index is within the range of AllTableData[i-1]
+                    cell.text = AllTableData[i-1][j]
     doc.save(f"Attendance_list/Attendance {attendance.id} for {attendance.title} {attendance.date.date()}.docx")
     print("save")
     messages.success(request, f"You have successfull generated Attendance {attendance.id} for {attendance.title} {attendance.date.date()}.docx")
