@@ -23,13 +23,28 @@
       #id_name {
         width: 100% !important;
       }
+      .card {
+    position: relative;
+    height: 350.604px;}
+    .group-1.group{
+      width: 233px;
+      right: -30px;
+    }
+      @media print{
+        .forms, nav{
+          display: none;
+        }
+        .no-break {
+            page-break-inside: avoid;
+        }
+      }
     </style>
     <div>
-      <div>
+      <div class="forms">
         <div class="m-3">
           <a
             href="#"
-            onclick="printElement()"
+            onclick="window.print()"
             class="m-3 btn btn-warning text-center text-white m-3 mx-auto"
             >Print cards</a
           >
@@ -59,9 +74,9 @@
         </form>
       </div>
 
-      <div class="cardlist" id="cardlist">
+      <div class="cardlist">
         {% for attendee in specialcard %}
-        <div class="level-{{attendee.level}}-front screen">
+        <div class="no-break level-{{attendee.level}}-front screen">
           <div class="overlap-group1">
             <img
               src="{% static 'img/cards/R2R_P_1.png' %}"
@@ -178,9 +193,7 @@
           </div>
         </div>
         {% endfor %} {% for attendee in Attendee %}
-        <div
-          class="{% if attendee.inhouse %} {% if attendee.volunteers.Volunteer and attendee.Are_you_a_pastor == False %} worker {% elif attendee.Are_you_a_pastor %} i-pastor {% else %} participant {% endif %} {% else %} {% if attendee.volunteers.Volunteer and attendee.Are_you_a_pastor == False %} volunteer {% elif attendee.Are_you_a_pastor %} o-pastor {% else %} participant {% endif %} {% endif %}"
-        >
+        <div class="no-break {% if attendee.inhouse %} {% if attendee.volunteers.Volunteer and attendee.Are_you_a_pastor == False %} worker {% elif attendee.Are_you_a_pastor %} i-pastor {% else %} participant {% endif %} {% else %} {% if attendee.volunteers.Volunteer and attendee.Are_you_a_pastor == False %} volunteer {% elif attendee.Are_you_a_pastor %} o-pastor {% else %} participant {% endif %} {% endif %}">
           <div class="card front">
             <div style="display: flex;flex-direction: column;justify-content: space-evenly;">
               <div class="header">
@@ -239,24 +252,7 @@
     </div>
   </div>
 </div>
-<script>
-  function printElement() {
-      var elementToPrint = document.getElementById("cardlist");
 
-      // Check if the element exists
-      if (elementToPrint) {
-          var printWindow = window.open('', '_blank');
-          printWindow.document.write('<html><head><title>Print</title></head><body>');
-          printWindow.document.write(elementToPrint.innerHTML);
-          printWindow.document.write('</body></html>');
-          printWindow.document.close(); // Important for IE
-
-          printWindow.print();
-      } else {
-          console.error("Element not found.");
-      }
-  }
-</script>
 <script>
   function addClassesToFormFields() {
     var form = document.getElementById("myForm");
