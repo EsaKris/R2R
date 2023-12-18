@@ -75,12 +75,12 @@ class Specialcard(models.Model):
     
     def qr_code(self):
         qr_code = make(self.uid)
-        basename = str(self.name.replace(" ", "_")) + '_QR_CODE.png'
+        basename = str(self.uid) + '_QR_CODE.png'
         qr_code.save('media/QR_CODE/{}'.format(basename))
         return '/media/QR_CODE/{}'.format(basename)
 
     def __str__(self):
-        return f'{self.name} -> ID:{self.id}'
+        return f'{self.uid} -> ID:{self.id}'
     
     def save(self,force_insert=True,using='dataset'):
         super().save(force_insert)
