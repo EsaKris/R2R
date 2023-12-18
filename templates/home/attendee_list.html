@@ -59,7 +59,7 @@
         </form>
       </div>
 
-      <div class="cardlist">
+      <div class="cardlist" id="cardlist">
         {% for attendee in specialcard %}
         <div class="level-{{attendee.level}}-front screen">
           <div class="overlap-group1">
@@ -239,7 +239,24 @@
     </div>
   </div>
 </div>
+<script>
+  function printElement() {
+      var elementToPrint = document.getElementById("cardlist");
 
+      // Check if the element exists
+      if (elementToPrint) {
+          var printWindow = window.open('', '_blank');
+          printWindow.document.write('<html><head><title>Print</title></head><body>');
+          printWindow.document.write(elementToPrint.innerHTML);
+          printWindow.document.write('</body></html>');
+          printWindow.document.close(); // Important for IE
+
+          printWindow.print();
+      } else {
+          console.error("Element not found.");
+      }
+  }
+</script>
 <script>
   function addClassesToFormFields() {
     var form = document.getElementById("myForm");
