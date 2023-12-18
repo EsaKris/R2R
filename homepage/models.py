@@ -10,16 +10,16 @@ GENDER = (
 )
 
 class Attendees(models.Model):
-    uid = models.UUIDField(default=uuid.uuid4, editable=False)
-    Full_Name = models.CharField(max_length=250)
-    Email = models.EmailField(unique=True)
-    Phone = models.CharField(max_length=20, unique=True)
-    Gender = models.CharField(max_length = 150, choices=GENDER)
-    Local_Assembly = models.CharField(max_length=250)
+    uid = models.UUIDField(default=uuid.uuid4, editable=False, null=True, blank=True)
+    Full_Name = models.CharField(max_length=250, null=True, blank=True)
+    Email = models.EmailField(unique=True, null=True, blank=True)
+    Phone = models.CharField(max_length=20, unique=True, null=True, blank=True)
+    Gender = models.CharField(max_length = 150, choices=GENDER, null=True, blank=True)
+    Local_Assembly = models.CharField(max_length=250, null=True, blank=True)
     
-    Nationality = models.CharField(max_length=100, choices=countryListAlpha3)
-    State_of_Residence = models.CharField(max_length=100)
-    Local_Government_Area = models.CharField(max_length=200)
+    Nationality = models.CharField(max_length=100, choices=countryListAlpha3, null=True, blank=True)
+    State_of_Residence = models.CharField(max_length=100, null=True, blank=True)
+    Local_Government_Area = models.CharField(max_length=200, null=True, blank=True)
 
     Are_you_a_pastor = models.BooleanField(default=False, verbose_name="Are you a pastor?")
     will_you_be_camping = models.BooleanField(default=False, verbose_name="will you be camping with us?")
@@ -44,7 +44,7 @@ class Attendees(models.Model):
         return super().save(*args, **kwargs)
 
 class Volunteers(models.Model):
-    Attendee = models.OneToOneField(Attendees, on_delete=models.CASCADE, related_name='volunteers',null=True,)
+    Attendee = models.OneToOneField(Attendees, on_delete=models.CASCADE, related_name='volunteers',null=True,blank=True)
     Volunteer = models.BooleanField(default=False)
     created = models.DateTimeField(default = timezone.now())    
     
