@@ -3,7 +3,7 @@ from .views import register, homepage, volunteer, AttendeeListView, prayerReques
 
 
 urlpatterns = [
-    path('Register', register, name="register"),
+    path('TV', register, name="register"),
     path("", homepage, name="homepage"),
     path("donate", donate, name="donate"),
     path("send_prayer_request", prayerRequest, name="prayerRequest"),
