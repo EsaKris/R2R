@@ -11,7 +11,7 @@
         display: block !important;
 }
 .old{
-    padding: 0.5rem;
+    padding: 0.5rem 0;
 }
 .old > iframe{
     margin: 5px;
@@ -20,25 +20,27 @@
 <div class="container rounded-5">
     <div class="register" >
         <div class="d-flex" style="flex-wrap: wrap; background-color: rgba(0, 0, 0, 0.784);place-content: space-between;height:100%">
-            <div class="text-center" style="align-self: center;flex:1; max-width: 400px;">
+            <div class="text-center" style="align-self: center;flex:1; max-width: 350px;">
                 <div class="form-header">
                     <div><img src="{% static 'img/r2r 2.png' %}" alt=""></div>
                     <p> Have your mind renewed and heart filled with the knowledge of the will of God, and find grace to obey.</p>
                 </div>
             </div>
             <form method="post" id='myForm' style="max-width: 700px;">
-                <iframe style="width: 100%;height: 100%;" src="https://www.youtube.com/embed/hxuxd8Lkeo4?si=pJSt_4spvFzKVWJy&amp;autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <iframe style="width: 100%;height: 100%;" src="https://www.youtube.com/embed/qi2tgCjuK9Y?si=rofK5YXN_HmNd0i_&amp;autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </form>
         </div>
 </div>
   
-</div>
-<div class="m-md-5 d-md-flex g-3 old">
-    <iframe style="width: 500px;height: 400px;" src="https://www.youtube.com/embed/hxuxd8Lkeo4?si=pJSt_4spvFzKVWJy&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    <iframe style="width: 500px;height: 400px;" src="https://www.youtube.com/embed/WhwGb-x378s?si=gJk826fdreYf_j3G&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<div class="my-md-5 d-md-flex g-3 old flex-wrap">
+    <iframe style="min-width: 200px;max-width: 370px;width: 100%; height: 350px;" src="https://www.youtube.com/embed/qi2tgCjuK9Y?si=rofK5YXN_HmNd0i_&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe style="min-width: 200px;max-width: 370px;width:100%;height: 350px;" src="https://www.youtube.com/embed/CGHGxxQhPVM?si=-FMEx51qFGu0WBJR&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe style="min-width: 200px;max-width: 370px;width: 100%; height: 350px;" src="https://www.youtube.com/embed/hxuxd8Lkeo4?si=pJSt_4spvFzKVWJy&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe style="min-width: 200px;max-width: 370px;width:100%;height: 350px;" src="https://www.youtube.com/embed/WhwGb-x378s?si=gJk826fdreYf_j3G&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </div>
 
-    <script>
+</div>
+<script>
     function addClassesToFormFields() {
         var form = document.getElementById("myForm");
         var fields = document.querySelectorAll("input, select, textarea");  // Select all input, select, and textarea elements within the form
